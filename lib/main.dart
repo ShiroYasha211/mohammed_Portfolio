@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: AppColors.background,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        useMaterial3: true,
       ),
       home: const PortfolioHome(),
     );
@@ -39,46 +40,94 @@ class PortfolioHome extends StatefulWidget {
 
 class _PortfolioHomeState extends State<PortfolioHome> {
   final ScrollController _scrollController = ScrollController();
-  final GlobalKey _homeKey = GlobalKey();
-  final GlobalKey _aboutKey = GlobalKey();
-  final GlobalKey _skillsKey = GlobalKey();
-  final GlobalKey _projectsKey = GlobalKey();
-  final GlobalKey _certificatesKey = GlobalKey();
-  final GlobalKey _contactKey = GlobalKey();
+  final Map<String, GlobalKey> _sectionKeys = {
+    'home': GlobalKey(),
+    'about': GlobalKey(),
+    'skills': GlobalKey(),
+    'projects': GlobalKey(),
+    'certificates': GlobalKey(),
+    'contact': GlobalKey(),
+  };
+  bool _showFAB = false;
+  void scrollToSection(String section) {
+    final key = _sectionKeys[section];
+    if (key != null && key.currentContext != null) {
+      Scrollable.ensureVisible(
+        key.currentContext!,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+        alignment: 0.1,
+      );
+    }
+  }
 
-  void scrollToSection(GlobalKey key) {
-    Scrollable.ensureVisible(
-      key.currentContext!,
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
       duration: const Duration(milliseconds: 800),
       curve: Curves.easeInOut,
     );
   }
 
+  void _handleScroll() {
+    final scrollPosition = _scrollController.position;
+
+    if (scrollPosition.pixels > 300 && !_showFAB) {
+      setState(() {
+        _showFAB = true;
+      });
+    } else if (scrollPosition.pixels <= 300 && _showFAB) {
+      setState(() {
+        _showFAB = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_handleScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         controller: _scrollController,
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             CustomNavBar(
               onNavigate: scrollToSection,
-              homeKey: _homeKey,
-              aboutKey: _aboutKey,
-              skillsKey: _skillsKey,
-              projectsKey: _projectsKey,
-              certificatesKey: _certificatesKey,
-              contactKey: _contactKey,
+              sectionKeys: _sectionKeys,
+              scrollController: _scrollController,
             ),
-            HeroSection(key: _homeKey),
-            AboutSection(key: _aboutKey),
-            SkillsSection(key: _skillsKey),
-            ProjectsSection(key: _projectsKey),
-            CertificatesSection(key: _certificatesKey),
-            ContactSection(key: _contactKey),
+            HeroSection(key: _sectionKeys['home']),
+            AboutSection(key: _sectionKeys['about']),
+            SkillsSection(key: _sectionKeys['skills']),
+            ProjectsSection(key: _sectionKeys['projects']),
+            CertificatesSection(key: _sectionKeys['certificates']),
+            ContactSection(key: _sectionKeys['contact']),
           ],
         ),
       ),
+      floatingActionButton: _showFAB
+          ? FloatingActionButton(
+              onPressed: _scrollToTop,
+              mini: true,
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              child: const Icon(Icons.arrow_upward),
+            )
+          : null,
     );
   }
 }

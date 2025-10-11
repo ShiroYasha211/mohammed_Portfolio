@@ -3,23 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants/colors.dart';
 
 class CustomNavBar extends StatefulWidget {
-  final Function(GlobalKey) onNavigate;
-  final GlobalKey homeKey;
-  final GlobalKey aboutKey;
-  final GlobalKey skillsKey;
-  final GlobalKey projectsKey;
-  final GlobalKey certificatesKey;
-  final GlobalKey contactKey;
+  final Function(String) onNavigate;
+  final Map<String, GlobalKey> sectionKeys;
+  final ScrollController scrollController;
 
   const CustomNavBar({
     super.key,
     required this.onNavigate,
-    required this.homeKey,
-    required this.aboutKey,
-    required this.skillsKey,
-    required this.projectsKey,
-    required this.certificatesKey,
-    required this.contactKey,
+    required this.sectionKeys,
+    required this.scrollController,
   });
 
   @override
@@ -28,6 +20,37 @@ class CustomNavBar extends StatefulWidget {
 
 class _CustomNavBarState extends State<CustomNavBar> {
   String selectedSection = 'Home';
+
+  void _updateSelectionSection() {
+    final scrollPosition = widget.scrollController.position.pixels;
+    final context = widget.sectionKeys['home']!.currentContext;
+
+    if (context != null) {
+      final RenderBox renderBox = context.findRenderObject() as RenderBox;
+      final position = renderBox.localToGlobal(Offset.zero);
+      //final size = renderBox.size;
+
+      Future.delayed(const Duration(milliseconds: 200), () {
+        if (scrollPosition >= position.dy - 100) {
+          setState(() {
+            selectedSection = 'Home';
+          });
+        }
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.scrollController.addListener(_updateSelectionSection);
+  }
+
+  @override
+  void dispose() {
+    widget.scrollController.removeListener(_updateSelectionSection);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +109,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
 
           // Navigation Items
-          if (isMobile) 
-            _buildMobileMenu()
-          else 
-            _buildDesktopMenu(),
+          if (isMobile) _buildMobileMenu() else _buildDesktopMenu(),
         ],
       ),
     );
@@ -97,14 +117,13 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   Widget _buildDesktopMenu() {
     final menuItems = [
-      {'title': 'Home', 'key': widget.homeKey},
-      {'title': 'About', 'key': widget.aboutKey},
-      {'title': 'Skills', 'key': widget.skillsKey},
-      {'title': 'Projects', 'key': widget.projectsKey},
-      {'title': 'Certificates', 'key': widget.certificatesKey},
-      {'title': 'Contact', 'key': widget.contactKey},
+      {'title': 'Home', 'key': 'home'},
+      {'title': 'About', 'key': 'about'},
+      {'title': 'Skills', 'key': 'skills'},
+      {'title': 'Projects', 'key': 'projects'},
+      {'title': 'Certificates', 'key': 'certificates'},
+      {'title': 'Contact', 'key': 'contact'},
     ];
-
     return Row(
       children: menuItems.map((item) {
         final isSelected = selectedSection == item['title'];
@@ -117,24 +136,29 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 setState(() {
                   selectedSection = item['title'] as String;
                 });
-                widget.onNavigate(item['key'] as GlobalKey);
+                widget.onNavigate(item['key'] as String);
               },
               borderRadius: BorderRadius.circular(8),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
+                  color: isSelected
+                      ? AppColors.primary.withOpacity(0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
-                  border: isSelected 
-                    ? Border.all(color: AppColors.primary.withOpacity(0.3))
-                    : null,
+                  border: isSelected
+                      ? Border.all(color: AppColors.primary.withOpacity(0.3))
+                      : null,
                 ),
                 child: Text(
                   item['title'] as String,
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                    color: isSelected ? AppColors.primary : AppColors.textSecondary,
+                    color: isSelected
+                        ? AppColors.primary
+                        : AppColors.textSecondary,
                   ),
                 ),
               ),
@@ -163,31 +187,24 @@ class _CustomNavBarState extends State<CustomNavBar> {
         borderRadius: BorderRadius.circular(12),
       ),
       itemBuilder: (context) => [
-        _buildPopupMenuItem('Home', widget.homeKey),
-        _buildPopupMenuItem('About', widget.aboutKey),
-        _buildPopupMenuItem('Skills', widget.skillsKey),
-        _buildPopupMenuItem('Projects', widget.projectsKey),
-        _buildPopupMenuItem('Certificates', widget.certificatesKey),
-        _buildPopupMenuItem('Contact', widget.contactKey),
+        _buildPopupMenuItem('Home'),
+        _buildPopupMenuItem('About'),
+        _buildPopupMenuItem('Skills'),
+        _buildPopupMenuItem('Projects'),
+        _buildPopupMenuItem('Certificates'),
+        _buildPopupMenuItem('Contact'),
       ],
       onSelected: (value) {
         setState(() {
           selectedSection = value;
         });
-        final keyMap = {
-          'Home': widget.homeKey,
-          'About': widget.aboutKey,
-          'Skills': widget.skillsKey,
-          'Projects': widget.projectsKey,
-          'Certificates': widget.certificatesKey,
-          'Contact': widget.contactKey,
-        };
-        widget.onNavigate(keyMap[value]!);
+
+        widget.onNavigate(value.toLowerCase());
       },
     );
   }
 
-  PopupMenuItem<String> _buildPopupMenuItem(String title, GlobalKey key) {
+  PopupMenuItem<String> _buildPopupMenuItem(String title) {
     return PopupMenuItem<String>(
       value: title,
       child: Text(
