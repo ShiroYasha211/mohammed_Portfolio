@@ -46,7 +46,7 @@ class AppColors {
   );
 
   // Social Media Colors
-  static const Color github = Color(0xFF333333);
+  static const Color github = Color.fromARGB(255, 98, 97, 97);
   static const Color linkedin = Color(0xFF0077B5);
   static const Color whatsapp = Color(0xFF25D366);
   static const Color email = Color(0xFFEA4335);
@@ -56,7 +56,9 @@ class AppTheme {
   static const double borderRadius = 12.0;
   static const double cardPadding = 24.0;
   static const double sectionPadding = 80.0;
-  
-  static const EdgeInsets mobilePadding = EdgeInsets.symmetric(horizontal: 20.0);
-  static const EdgeInsets desktopPadding = EdgeInsets.symmetric(horizontal: 120.0);
+
+  static const EdgeInsets mobilePadding =
+      EdgeInsets.symmetric(horizontal: 20.0);
+  static const EdgeInsets desktopPadding =
+      EdgeInsets.symmetric(horizontal: 120.0);
 }

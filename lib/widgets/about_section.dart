@@ -19,26 +19,26 @@ class _AboutSectionState extends State<AboutSection>
 
   final List<Map<String, dynamic>> _stats = [
     {
-      'number': '4+',
+      'number': '5+',
       'label': 'Years Experience',
       'icon': Icons.code,
       'color': AppColors.primary,
     },
     {
-      'number': '15+',
+      'number': '10+',
       'label': 'Projects Completed',
       'icon': Icons.laptop_mac,
       'color': AppColors.secondary,
     },
     {
       'number': '2+',
-      'label': 'Years with Flutter',
+      'label': 'Years in Flutter',
       'icon': Icons.mobile_friendly,
       'color': AppColors.accent,
     },
     {
-      'number': '3+',
-      'label': 'Technologies Mastered',
+      'number': '5+',
+      'label': 'Tools & Frameworks',
       'icon': Icons.settings,
       'color': AppColors.success,
     },
@@ -98,16 +98,18 @@ class _AboutSectionState extends State<AboutSection>
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppTheme.sectionPadding,
-          horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+          horizontal: isMobile
+              ? 20
+              : isTablet
+                  ? 60
+                  : 120,
         ),
         color: AppColors.background,
         child: Column(
           children: [
             _buildSectionHeader(),
             const SizedBox(height: 60),
-            isMobile 
-              ? _buildMobileLayout()
-              : _buildDesktopLayout(),
+            isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
             const SizedBox(height: 60),
             _buildStatsSection(),
           ],
@@ -218,16 +220,10 @@ class _AboutSectionState extends State<AboutSection>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               gradient: AppColors.primaryGradient,
-              // TODO: Replace with actual image
-              // image: DecorationImage(
-              //   image: AssetImage('assets/images/profile_about.jpg'),
-              //   fit: BoxFit.cover,
-              // ),
-            ),
-            child: const Icon(
-              Icons.person,
-              size: 100,
-              color: Colors.white,
+              image: const DecorationImage(
+                image: AssetImage('assets/images/profile.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(height: 20),
@@ -313,15 +309,15 @@ class _AboutSectionState extends State<AboutSection>
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'I am a passionate software developer with a Bachelor\'s degree in Computer Information Systems. My journey in programming started 4 years ago, and I have been specializing in Flutter development for the past 2 years.',
+          'I am a passionate software developer with a Bachelor’s degree in Computer Information Systems and several years of hands-on programming experience. I specialize in building modern, high-performance Flutter applications that deliver exceptional user experiences and real-world impact.',
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'I have practical experience in building diverse applications including forums, food delivery systems, and e-commerce dashboards. My expertise spans across mobile and web development, with a strong focus on creating user-friendly and efficient applications.',
+          'Throughout my journey, I have developed a wide range of applications — including forum platforms, food delivery systems, e-commerce dashboards, portfolio websites, and online store apps. My focus is on crafting seamless, user-centric experiences that solve practical business challenges across mobile and web platforms.',
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'Currently working as a freelancer, I am passionate about turning ideas into functional applications. I specialize in UI/UX design using Flutter widgets, backend integration with Laravel and Firebase, and API integration & database management.',
+          'As a freelance developer, I’m driven by the challenge of turning complex ideas into elegant, fully functional solutions. My full-stack expertise spans from designing intuitive UI/UX with Flutter to building robust backends using Laravel, and managing APIs and databases for scalable, maintainable performance.',
         ),
         const SizedBox(height: 30),
         _buildSkillHighlights(),
@@ -363,28 +359,28 @@ class _AboutSectionState extends State<AboutSection>
         ),
         const SizedBox(height: 15),
         ...highlights.map((highlight) => Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: Row(
-            children: [
-              Container(
-                width: 6,
-                height: 6,
-                decoration: const BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
-                ),
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    decoration: const BoxDecoration(
+                      color: AppColors.primary,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    highlight,
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 12),
-              Text(
-                highlight,
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-            ],
-          ),
-        )),
+            )),
       ],
     );
   }
@@ -400,8 +396,8 @@ class _AboutSectionState extends State<AboutSection>
         ),
       ),
       child: MediaQuery.of(context).size.width < 768
-        ? _buildMobileStats()
-        : _buildDesktopStats(),
+          ? _buildMobileStats()
+          : _buildDesktopStats(),
     );
   }
 

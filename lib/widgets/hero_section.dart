@@ -17,6 +17,9 @@ class _HeroSectionState extends State<HeroSection>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  late AnimationController _scrollIndicatorController;
+  late Animation<double> _pulseAnimation;
+  late Animation<double> _bounceAnimation;
 
   @override
   void initState() {
@@ -42,12 +45,40 @@ class _HeroSectionState extends State<HeroSection>
       curve: Curves.easeOutBack,
     ));
 
+    // تحكم منفصل لمؤشر التمرير
+    _scrollIndicatorController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
+
+    _pulseAnimation = Tween<double>(
+      begin: 0.4,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _scrollIndicatorController,
+      curve: Curves.easeInOut,
+    ));
+
+    _bounceAnimation = Tween<double>(
+      begin: 0.0,
+      end: 8.0,
+    ).animate(CurvedAnimation(
+      parent: _scrollIndicatorController,
+      curve: Curves.easeInOut,
+    ));
+
     _controller.forward();
+
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      _scrollIndicatorController.repeat(reverse: true);
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _scrollIndicatorController.dispose();
+
     super.dispose();
   }
 
@@ -67,22 +98,24 @@ class _HeroSectionState extends State<HeroSection>
         children: [
           // Background Animation Particles
           ..._buildBackgroundParticles(),
-          
+
           // Main Content
           Center(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+                horizontal: isMobile
+                    ? 20
+                    : isTablet
+                        ? 60
+                        : 120,
               ),
-              child: isMobile 
-                ? _buildMobileLayout()
-                : _buildDesktopLayout(),
+              child: isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
             ),
           ),
 
           // Scroll Down Indicator
           Positioned(
-            bottom: 30,
+            bottom: isMobile ? -14 : 40,
             left: 0,
             right: 0,
             child: _buildScrollIndicator(),
@@ -107,8 +140,8 @@ class _HeroSectionState extends State<HeroSection>
             _buildAnimatedRole(),
             const SizedBox(height: 40),
             _buildDescription(),
-            const SizedBox(height: 40),
-            _buildActionButtons(),
+            // const SizedBox(height: 40),
+            // _buildActionButtons(),
             const SizedBox(height: 30),
             _buildSocialLinks(),
           ],
@@ -136,16 +169,16 @@ class _HeroSectionState extends State<HeroSection>
                   _buildAnimatedRole(),
                   const SizedBox(height: 30),
                   _buildDescription(),
-                  const SizedBox(height: 40),
-                  _buildActionButtons(),
+                  // const SizedBox(height: 40),
+                  // _buildActionButtons(),
                   const SizedBox(height: 30),
                   _buildSocialLinks(),
                 ],
               ),
             ),
-            
+
             const SizedBox(width: 60),
-            
+
             // Right Side - Profile Image
             Expanded(
               flex: 2,
@@ -176,19 +209,13 @@ class _HeroSectionState extends State<HeroSection>
       ),
       child: Container(
         margin: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.surface,
-          // TODO: Replace with actual profile image
-          // image: DecorationImage(
-          //   image: AssetImage('assets/images/profile.jpg'),
-          //   fit: BoxFit.cover,
-          // ),
-        ),
-        child: Icon(
-          Icons.person,
-          size: size * 0.5,
-          color: AppColors.primary,
+          image: DecorationImage(
+            image: AssetImage('assets/images/profile.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -209,9 +236,9 @@ class _HeroSectionState extends State<HeroSection>
     return SizedBox(
       height: 120,
       child: Column(
-        crossAxisAlignment: MediaQuery.of(context).size.width < 768 
-          ? CrossAxisAlignment.center 
-          : CrossAxisAlignment.start,
+        crossAxisAlignment: MediaQuery.of(context).size.width < 768
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         children: [
           Text(
             'Mohammed Alhemyari',
@@ -264,23 +291,23 @@ class _HeroSectionState extends State<HeroSection>
 
   Widget _buildDescription() {
     return Text(
-      'Bachelor in Computer Information Systems, passionate about developing mobile and web applications using Flutter. I have practical experience in building diverse applications like forums, delivery systems, and dashboards.',
+      'Bachelor in Computer Information Systems, passionate about developing mobile and web applications using Flutter. I have practical experience in building diverse applications like forums, delivery systems, portfolios, and dashboards etc...',
       style: GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.width < 768 ? 14 : 16,
         color: AppColors.textSecondary,
         height: 1.6,
       ),
-      textAlign: MediaQuery.of(context).size.width < 768 
-        ? TextAlign.center 
-        : TextAlign.left,
+      textAlign: MediaQuery.of(context).size.width < 768
+          ? TextAlign.center
+          : TextAlign.left,
     );
   }
 
   Widget _buildActionButtons() {
     return Row(
-      mainAxisAlignment: MediaQuery.of(context).size.width < 768 
-        ? MainAxisAlignment.center 
-        : MainAxisAlignment.start,
+      mainAxisAlignment: MediaQuery.of(context).size.width < 768
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.start,
       children: [
         ElevatedButton(
           onPressed: () {
@@ -335,9 +362,9 @@ class _HeroSectionState extends State<HeroSection>
 
   Widget _buildSocialLinks() {
     return Row(
-      mainAxisAlignment: MediaQuery.of(context).size.width < 768 
-        ? MainAxisAlignment.center 
-        : MainAxisAlignment.start,
+      mainAxisAlignment: MediaQuery.of(context).size.width < 768
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.start,
       children: [
         _buildSocialIcon(
           FontAwesomeIcons.github,
@@ -394,38 +421,40 @@ class _HeroSectionState extends State<HeroSection>
   }
 
   Widget _buildScrollIndicator() {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Opacity(
-          opacity: _fadeAnimation.value,
-          child: Column(
-            children: [
-              Text(
-                'Scroll Down',
-                style: GoogleFonts.poppins(
-                  color: AppColors.textTertiary,
-                  fontSize: 12,
-                ),
-              ),
-              const SizedBox(height: 10),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 1000),
-                child: const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: AppColors.primary,
-                  size: 30,
-                ),
-              ),
-            ],
+    return FadeTransition(
+      opacity: _pulseAnimation,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Scroll Down',
+            style: GoogleFonts.poppins(
+              color: AppColors.textSecondary,
+              fontSize: 14,
+            ),
           ),
-        );
-      },
+          const SizedBox(height: 8),
+          AnimatedBuilder(
+            animation: _bounceAnimation,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(0, -_bounceAnimation.value),
+                child: child,
+              );
+            },
+            child: const Icon(
+              Icons.keyboard_arrow_down,
+              color: AppColors.textSecondary,
+              size: 24,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   List<Widget> _buildBackgroundParticles() {
-    return List.generate(20, (index) {
+    return List.generate(40, (index) {
       return Positioned(
         left: (index * 50.0) % MediaQuery.of(context).size.width,
         top: (index * 80.0) % MediaQuery.of(context).size.height,
