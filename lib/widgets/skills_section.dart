@@ -22,23 +22,23 @@ class _SkillsSectionState extends State<SkillsSection>
     {
       'name': 'Dart',
       'level': 90,
-      'icon': FontAwesomeIcons.code,
+      'icon': FontAwesomeIcons.dartLang,
       'color': AppColors.primary,
       'experience': '2+ years',
     },
     {
       'name': 'JavaScript',
-      'level': 85,
+      'level': 65,
       'icon': FontAwesomeIcons.js,
       'color': const Color(0xFFF7DF1E),
-      'experience': '3+ years',
+      'experience': '1+ years',
     },
     {
       'name': 'Python',
-      'level': 75,
+      'level': 65,
       'icon': FontAwesomeIcons.python,
       'color': const Color(0xFF3776AB),
-      'experience': '2+ years',
+      'experience': '1+ years',
     },
     {
       'name': 'C++',
@@ -49,10 +49,24 @@ class _SkillsSectionState extends State<SkillsSection>
     },
     {
       'name': 'C#',
-      'level': 65,
-      'icon': FontAwesomeIcons.microsoft,
+      'level': 80,
+      'icon': FontAwesomeIcons.desktop,
       'color': const Color(0xFF239120),
       'experience': '1+ years',
+    },
+    {
+      'name': 'PHP',
+      'level': 70,
+      'icon': FontAwesomeIcons.php,
+      'color': const Color(0xFF8993BE),
+      'experience': '1+ years',
+    },
+    {
+      'name': 'Kotlin',
+      'level': 50,
+      'icon': FontAwesomeIcons.android,
+      'color': const Color(0xFF7F52FF),
+      'experience': 'Less than 1 year',
     },
     {
       'name': 'SQL',
@@ -67,27 +81,27 @@ class _SkillsSectionState extends State<SkillsSection>
     {
       'name': 'Flutter',
       'level': 90,
-      'icon': FontAwesomeIcons.mobile,
+      'icon': FontAwesomeIcons.flutter,
       'color': const Color(0xFF02569B),
       'description': 'Cross-platform mobile & web development',
     },
     {
       'name': 'Laravel',
-      'level': 70,
+      'level': 80,
       'icon': FontAwesomeIcons.laravel,
       'color': const Color(0xFFFF2D20),
-      'description': 'Backend API development',
+      'description': 'Powerful backend framework for RESTful APIs',
     },
     {
       'name': 'Firebase',
-      'level': 85,
+      'level': 80,
       'icon': FontAwesomeIcons.fire,
       'color': const Color(0xFFFFCA28),
       'description': 'Real-time database & authentication',
     },
     {
       'name': 'Supabase',
-      'level': 75,
+      'level': 85,
       'icon': FontAwesomeIcons.database,
       'color': const Color(0xFF3ECF8E),
       'description': 'Open-source Firebase alternative',
@@ -119,6 +133,11 @@ class _SkillsSectionState extends State<SkillsSection>
       'name': 'Oracle',
       'icon': FontAwesomeIcons.server,
       'color': const Color(0xFFF80000),
+    },
+    {
+      'name': 'Unity',
+      'icon': FontAwesomeIcons.unity,
+      'color': const Color(0xFF000000),
     },
   ];
 
@@ -176,7 +195,11 @@ class _SkillsSectionState extends State<SkillsSection>
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppTheme.sectionPadding,
-          horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+          horizontal: isMobile
+              ? 20
+              : isTablet
+                  ? 60
+                  : 120,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -257,8 +280,8 @@ class _SkillsSectionState extends State<SkillsSection>
             ),
             const SizedBox(height: 30),
             MediaQuery.of(context).size.width < 768
-              ? _buildMobileLanguageGrid()
-              : _buildDesktopLanguageGrid(),
+                ? _buildMobileLanguageGrid()
+                : _buildDesktopLanguageGrid(),
           ],
         ),
       ),
@@ -274,7 +297,9 @@ class _SkillsSectionState extends State<SkillsSection>
               Expanded(child: _buildLanguageCard(_programmingLanguages[i], i)),
               if (i + 1 < _programmingLanguages.length) ...[
                 const SizedBox(width: 20),
-                Expanded(child: _buildLanguageCard(_programmingLanguages[i + 1], i + 1)),
+                Expanded(
+                    child: _buildLanguageCard(
+                        _programmingLanguages[i + 1], i + 1)),
               ],
             ],
           ),
@@ -305,7 +330,8 @@ class _SkillsSectionState extends State<SkillsSection>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        final delayedValue = (_animationController.value - (index * 0.1)).clamp(0.0, 1.0);
+        final delayedValue =
+            (_animationController.value - (0 * 0.1)).clamp(0.0, 1.0);
         return Transform.scale(
           scale: 0.8 + (delayedValue * 0.2),
           child: Opacity(
@@ -329,11 +355,30 @@ class _SkillsSectionState extends State<SkillsSection>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FaIcon(
-                    language['icon'],
-                    color: language['color'],
-                    size: 40,
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: (language['color'] as Color).withOpacity(0.1),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: (language['color'] as Color).withOpacity(0.3),
+                        width: 2,
+                      ),
+                    ),
+                    child: Center(
+                      child: FaIcon(
+                        language['icon'],
+                        color: language['color'],
+                        size: 32,
+                      ),
+                    ),
                   ),
+                  // FaIcon(
+                  //   language['icon'],
+                  //   color: language['color'],
+                  //   size: 40,
+                  // ),
                   const SizedBox(height: 15),
                   Text(
                     language['name'],
@@ -419,8 +464,8 @@ class _SkillsSectionState extends State<SkillsSection>
             ),
             const SizedBox(height: 30),
             MediaQuery.of(context).size.width < 768
-              ? _buildMobileFrameworksList()
-              : _buildDesktopFrameworksList(),
+                ? _buildMobileFrameworksList()
+                : _buildDesktopFrameworksList(),
           ],
         ),
       ),
@@ -429,12 +474,14 @@ class _SkillsSectionState extends State<SkillsSection>
 
   Widget _buildMobileFrameworksList() {
     return Column(
-      children: _frameworks.map((framework) => 
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: _buildFrameworkCard(framework),
-        ),
-      ).toList(),
+      children: _frameworks
+          .map(
+            (framework) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: _buildFrameworkCard(framework),
+            ),
+          )
+          .toList(),
     );
   }
 

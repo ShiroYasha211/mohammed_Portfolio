@@ -21,12 +21,51 @@ class _ProjectsSectionState extends State<ProjectsSection>
 
   final List<Map<String, dynamic>> _projects = [
     {
+      'title': 'Foodly Delivery App',
+      'description':
+          'Modern food delivery app built with Flutter, offering an exceptional user experience for ordering your favorite meals.',
+      'technologies': ['Flutter', 'Dart', 'Supabase'],
+      'githubUrl': 'https://github.com/ShiroYasha211/Foodly_delivery',
+      'category': 'Mobile App',
+      'status': 'Completed',
+      'features': [
+        'Smart Shopping Cart ',
+        'Menu Management',
+        'Cart Functionality',
+        'User Profiles',
+        'Real-time Price Calculation',
+        ' Persistent Cart Data',
+        'Order Invoice Generation ',
+        'Order History',
+        'Reorder Functionality ',
+      ],
+    },
+    {
+      'title': 'Lino App',
+      'description':
+          'Chat app with real-time messaging, user profiles, and media sharing, built using Flutter for seamless communication.',
+      'technologies': ['Flutter', 'Dart', 'Supabase'],
+      'githubUrl': 'https://github.com/ShiroYasha211/Lino',
+      'category': 'Mobile App',
+      'status': 'In Progress',
+      'features': [
+        'Real-time Messaging',
+        'User Profiles',
+        'Media Sharing',
+        'Push Notifications',
+        'Group Chats',
+        'Search Functionality',
+        'Typing Indicators',
+        'Read Receipts',
+        'Message Reactions',
+      ],
+    },
+    {
       'title': 'Forum App',
-      'description': 'A comprehensive forum application that allows users to create accounts, write posts, and interact through comments. Built with Flutter for the frontend and Laravel for the backend.',
+      'description':
+          'A comprehensive forum application that allows users to create accounts, write posts, and interact through comments. Built with Flutter for the frontend and Laravel for the backend.',
       'technologies': ['Flutter', 'Laravel', 'MySQL', 'API Integration'],
-      'image': 'assets/images/forum_app.png', // TODO: Add actual image
-      'githubUrl': 'https://github.com/ShiroYasha211/forum-app', // TODO: Add actual URL
-      'demoUrl': null, // TODO: Add demo URL if available
+      'githubUrl': 'https://github.com/ShiroYasha211/Fourm_Frontend',
       'category': 'Mobile App',
       'status': 'Completed',
       'features': [
@@ -38,31 +77,34 @@ class _ProjectsSectionState extends State<ProjectsSection>
       ],
     },
     {
-      'title': 'Food Delivery App',
-      'description': 'A professional food delivery application with smooth user experience, featuring restaurant browsing, menu management, order tracking, and payment integration.',
-      'technologies': ['Flutter', 'Firebase', 'Supabase', 'API Integration'],
-      'image': 'assets/images/food_delivery_app.png', // TODO: Add actual image
-      'githubUrl': 'https://github.com/ShiroYasha211/food-delivery', // TODO: Add actual URL
-      'demoUrl': null, // TODO: Add demo URL if available
-      'category': 'Mobile App',
+      'title': 'Forum App Backend',
+      'description':
+          'A comprehensive forum application backend that allows users to create accounts, write posts, and interact through comments. Built with Laravel and MySQL.',
+      'technologies': ['Laravel', 'MySQL', 'Php', 'API Integration'],
+      'githubUrl': 'https://github.com/ShiroYasha211/Fourm_Backend',
+      'category': 'Backend',
       'status': 'Completed',
       'features': [
-        'Restaurant Browsing',
-        'Menu Management',
-        'Cart Functionality',
-        'Order Tracking',
-        'Payment Integration',
+        'User Registration & Authentication',
+        'Post Creation & Management',
+        'Comment System',
+        'User Profiles',
+        'Real-time Updates',
       ],
     },
     {
-      'title': 'E-Commerce Dashboard',
-      'description': 'A comprehensive dashboard for e-commerce management built with Flutter Web. Includes product management, order tracking, analytics, and user management features.',
-      'technologies': ['Flutter Web', 'Firebase', 'Charts', 'API Integration'],
-      'image': 'assets/images/ecommerce_dashboard.png', // TODO: Add actual image
-      'githubUrl': 'https://github.com/ShiroYasha211/ecommerce-dashboard', // TODO: Add actual URL
-      'demoUrl': 'https://your-demo-url.com', // TODO: Add actual demo URL
+      'title': 'Shoply Admin Dashboard',
+      'description':
+          'A modern, responsive e-commerce admin dashboard built with Flutter Web and connected to Supabase backend. This dashboard provides comprehensive management tools for products, users, orders, and analytics.',
+      'technologies': [
+        'Flutter Web',
+        'Supabase',
+        'Charts',
+        'Responsive Design',
+      ],
+      'githubUrl': 'https://github.com/ShiroYasha211/Shoply_Admin_Dashboard',
       'category': 'Web App',
-      'status': 'Completed',
+      'status': 'In Progress',
       'features': [
         'Product Management',
         'Order Management',
@@ -71,16 +113,36 @@ class _ProjectsSectionState extends State<ProjectsSection>
         'Responsive Design',
       ],
     },
-    // TODO: Add more projects as they are completed
+    {
+      'title': 'Shoply App',
+      'description':
+          'A modern, responsive e-commerce app built with Flutter and connected to Supabase backend. This app provides a user-friendly interface for shopping and managing products.',
+      'technologies': [
+        'Flutter',
+        'Supabase',
+        'Responsive Design',
+      ],
+      'githubUrl': 'https://github.com/ShiroYasha211/Shoply',
+      'category': 'App',
+      'status': 'In Progress',
+      'features': [
+        'Product Browsing',
+        'Shopping Cart',
+        'User Profiles',
+        'Order History',
+        'Responsive Design',
+        'Real-time Updates',
+      ],
+    },
     {
       'title': 'Portfolio Website',
-      'description': 'This personal portfolio website built with Flutter Web, featuring modern design, smooth animations, and responsive layout across all devices.',
+      'description':
+          'This personal portfolio website built with Flutter Web, featuring modern design, smooth animations, and responsive layout across all devices.',
       'technologies': ['Flutter Web', 'Responsive Design', 'Animations'],
-      'image': 'assets/images/portfolio_website.png', // TODO: Add actual image
-      'githubUrl': 'https://github.com/ShiroYasha211/portfolio', // TODO: Add actual URL
-      'demoUrl': 'https://your-portfolio-url.com', // TODO: Add actual demo URL
+      'githubUrl':
+          'https://github.com/ShiroYasha211/mohammed_Portfolio', // TODO: Add actual URL
       'category': 'Web App',
-      'status': 'In Progress',
+      'status': 'Completed',
       'features': [
         'Modern UI Design',
         'Smooth Animations',
@@ -136,7 +198,9 @@ class _ProjectsSectionState extends State<ProjectsSection>
     if (_selectedCategory == 'All') {
       return _projects;
     }
-    return _projects.where((project) => project['category'] == _selectedCategory).toList();
+    return _projects
+        .where((project) => project['category'] == _selectedCategory)
+        .toList();
   }
 
   @override
@@ -155,7 +219,11 @@ class _ProjectsSectionState extends State<ProjectsSection>
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppTheme.sectionPadding,
-          horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+          horizontal: isMobile
+              ? 20
+              : isTablet
+                  ? 60
+                  : 120,
         ),
         color: AppColors.background,
         child: Column(
@@ -210,7 +278,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
   Widget _buildCategoryFilter() {
     return FadeTransition(
       opacity: _fadeAnimation,
-      child: Container(
+      child: SizedBox(
         height: 50,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -232,12 +300,16 @@ class _ProjectsSectionState extends State<ProjectsSection>
                   },
                   borderRadius: BorderRadius.circular(25),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
                     decoration: BoxDecoration(
-                      color: isSelected ? AppColors.primary : Colors.transparent,
+                      color:
+                          isSelected ? AppColors.primary : Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
-                        color: isSelected ? AppColors.primary : AppColors.textTertiary,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.textTertiary,
                       ),
                     ),
                     child: Text(
@@ -245,7 +317,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: isSelected ? Colors.white : AppColors.textSecondary,
+                        color:
+                            isSelected ? Colors.white : AppColors.textSecondary,
                       ),
                     ),
                   ),
@@ -272,78 +345,96 @@ class _ProjectsSectionState extends State<ProjectsSection>
 
   Widget _buildMobileProjectsList() {
     return Column(
-      children: _filteredProjects.map((project) => 
-        Padding(
-          padding: const EdgeInsets.only(bottom: 30),
-          child: _buildProjectCard(project, _filteredProjects.indexOf(project)),
-        ),
-      ).toList(),
+      children: _filteredProjects
+          .map(
+            (project) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: _buildMobileProjectCard(
+                  project, _filteredProjects.indexOf(project)),
+            ),
+          )
+          .toList(),
     );
   }
 
-  Widget _buildDesktopProjectsGrid() {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: MediaQuery.of(context).size.width > 1200 ? 2 : 1,
-        crossAxisSpacing: 30,
-        mainAxisSpacing: 30,
-        childAspectRatio: 1.3,
-      ),
-      itemCount: _filteredProjects.length,
-      itemBuilder: (context, index) {
-        return _buildProjectCard(_filteredProjects[index], index);
-      },
-    );
-  }
-
-  Widget _buildProjectCard(Map<String, dynamic> project, int index) {
+  Widget _buildMobileProjectCard(Map<String, dynamic> project, int index) {
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        final delayedValue = (_animationController.value - (index * 0.2)).clamp(0.0, 1.0);
-        return Transform.scale(
-          scale: 0.8 + (delayedValue * 0.2),
+        final delayedValue =
+            (_animationController.value - (index * 0.1)).clamp(0.0, 1.0);
+        if (delayedValue <= 0) return const SizedBox.shrink();
+
+        final curvedValue = Curves.easeOutCubic.transform(delayedValue);
+
+        return Transform.translate(
+          offset: Offset(0, (1 - curvedValue) * 20),
           child: Opacity(
-            opacity: delayedValue,
+            opacity: curvedValue,
             child: Container(
+              width: double.infinity, // مهم للموبايل
+              constraints: const BoxConstraints(
+                minHeight: 200, // ارتفاع أدنى
+              ),
               decoration: BoxDecoration(
-                gradient: AppColors.cardGradient,
-                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.cardGradient.colors.first.withOpacity(0.9),
+                    AppColors.cardGradient.colors.last.withOpacity(0.9),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: AppColors.primary.withOpacity(0.2),
+                  color: AppColors.primary.withOpacity(0.15),
+                  width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.1),
-                    blurRadius: 20,
-                    spreadRadius: 5,
+                    color: AppColors.primary.withOpacity(0.06),
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 5),
                   ),
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
                   children: [
-                    _buildProjectImage(project),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(25),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildProjectHeader(project),
-                            const SizedBox(height: 15),
-                            _buildProjectDescription(project),
-                            const SizedBox(height: 15),
-                            _buildTechnologies(project),
-                            const Spacer(),
-                            _buildProjectActions(project),
-                          ],
+                    Positioned(
+                      top: -15,
+                      right: -15,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withOpacity(0.03),
+                          shape: BoxShape.circle,
                         ),
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildMobileProjectHeader(project),
+                          const SizedBox(height: 15),
+                          _buildMobileProjectDescription(project),
+                          const SizedBox(height: 15),
+                          _buildMobileTechnologies(project),
+                          const SizedBox(height: 15),
+                          _buildMobileProjectActions(project),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: 15,
+                      right: 15,
+                      child: _buildStatusBadge(project['status']),
                     ),
                   ],
                 ),
@@ -355,86 +446,47 @@ class _ProjectsSectionState extends State<ProjectsSection>
     );
   }
 
-  Widget _buildProjectImage(Map<String, dynamic> project) {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: AppColors.primaryGradient,
-        // TODO: Replace with actual project images
-        // image: DecorationImage(
-        //   image: AssetImage(project['image']),
-        //   fit: BoxFit.cover,
-        // ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.transparent,
-              Colors.black.withOpacity(0.3),
-            ],
-          ),
-        ),
-        child: Stack(
-          children: [
-            Center(
-              child: Icon(
-                project['category'] == 'Mobile App' 
-                  ? Icons.phone_android 
-                  : Icons.web,
-                size: 60,
-                color: Colors.white.withOpacity(0.8),
-              ),
-            ),
-            Positioned(
-              top: 15,
-              right: 15,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                  color: project['status'] == 'Completed' 
-                    ? AppColors.success 
-                    : AppColors.warning,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Text(
-                  project['status'],
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProjectHeader(Map<String, dynamic> project) {
-    return Row(
+  Widget _buildMobileProjectHeader(Map<String, dynamic> project) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Text(
-            project['title'],
-            style: GoogleFonts.poppins(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
-            ),
-          ),
-        ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          width: 45,
+          height: 45,
+          margin: const EdgeInsets.only(bottom: 12),
           decoration: BoxDecoration(
             color: AppColors.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+          ),
+          child: Icon(
+            project['category'] == 'Mobile App'
+                ? Icons.phone_iphone
+                : project['category'] == 'Web App'
+                    ? Icons.web
+                    : Icons.code,
+            color: AppColors.primary,
+            size: 22,
+          ),
+        ),
+        Text(
+          project['title'],
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textPrimary,
+            height: 1.2,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.08),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppColors.primary.withOpacity(0.3)),
+            border: Border.all(color: AppColors.primary.withOpacity(0.15)),
           ),
           child: Text(
             project['category'],
@@ -449,7 +501,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
     );
   }
 
-  Widget _buildProjectDescription(Map<String, dynamic> project) {
+  Widget _buildMobileProjectDescription(Map<String, dynamic> project) {
     return Text(
       project['description'],
       style: GoogleFonts.poppins(
@@ -462,82 +514,92 @@ class _ProjectsSectionState extends State<ProjectsSection>
     );
   }
 
-  Widget _buildTechnologies(Map<String, dynamic> project) {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: (project['technologies'] as List<String>).map((tech) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: AppColors.textTertiary.withOpacity(0.3)),
-          ),
-          child: Text(
-            tech,
-            style: GoogleFonts.poppins(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: AppColors.textSecondary,
-            ),
-          ),
-        );
-      }).toList(),
-    );
-  }
-
-  Widget _buildProjectActions(Map<String, dynamic> project) {
-    return Row(
+  Widget _buildMobileTechnologies(Map<String, dynamic> project) {
+    final technologies = (project['technologies'] as List<String>);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (project['githubUrl'] != null)
-          _buildActionButton(
-            icon: FontAwesomeIcons.github,
-            label: 'Code',
-            color: AppColors.github,
-            onTap: () => _launchUrl(project['githubUrl']),
+        Text(
+          'Technologies:',
+          style: GoogleFonts.poppins(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: AppColors.textPrimary,
           ),
-        if (project['githubUrl'] != null && project['demoUrl'] != null)
-          const SizedBox(width: 10),
-        if (project['demoUrl'] != null)
-          _buildActionButton(
-            icon: Icons.launch,
-            label: 'Demo',
-            color: AppColors.primary,
-            onTap: () => _launchUrl(project['demoUrl']),
-          ),
-        const Spacer(),
-        InkWell(
-          onTap: () => _showProjectDetails(project),
-          borderRadius: BorderRadius.circular(8),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'View Details',
-                  style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
-                  ),
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: technologies.take(4).map((tech) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(8),
+                border:
+                    Border.all(color: AppColors.textTertiary.withOpacity(0.2)),
+              ),
+              child: Text(
+                tech,
+                style: GoogleFonts.poppins(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textSecondary,
                 ),
-                const SizedBox(width: 5),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12,
-                  color: AppColors.primary,
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          }).toList(),
         ),
       ],
     );
   }
 
-  Widget _buildActionButton({
+  Widget _buildMobileProjectActions(Map<String, dynamic> project) {
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  if (project['githubUrl'] != null)
+                    Expanded(
+                      child: _buildMobileActionButton(
+                        icon: FontAwesomeIcons.github,
+                        label: 'Source Code',
+                        color: AppColors.github,
+                        onTap: () => _launchUrl(project['githubUrl']),
+                      ),
+                    ),
+                  if (project['githubUrl'] != null &&
+                      project['demoUrl'] != null)
+                    const SizedBox(width: 10),
+                  if (project['demoUrl'] != null)
+                    Expanded(
+                      child: _buildMobileActionButton(
+                        icon: Icons.launch,
+                        label: 'Live Demo',
+                        color: AppColors.primary,
+                        onTap: () => _launchUrl(project['demoUrl']),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          width: double.infinity,
+          child: _buildMobileDetailsButton(project),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileActionButton({
     required IconData icon,
     required String label,
     required Color color,
@@ -547,16 +609,16 @@ class _ProjectsSectionState extends State<ProjectsSection>
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withOpacity(0.08),
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withOpacity(0.2)),
         ),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 14, color: color),
+            Icon(icon, size: 16, color: color),
             const SizedBox(width: 6),
             Text(
               label,
@@ -570,6 +632,466 @@ class _ProjectsSectionState extends State<ProjectsSection>
         ),
       ),
     );
+  }
+
+  Widget _buildMobileDetailsButton(Map<String, dynamic> project) {
+    return InkWell(
+      onTap: () => _showProjectDetails(project),
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: BoxDecoration(
+          gradient: AppColors.primaryGradient,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'View Project Details',
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDesktopProjectsGrid() {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: MediaQuery.of(context).size.width > 1200 ? 3 : 2,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
+        childAspectRatio: 1.1,
+      ),
+      itemCount: _filteredProjects.length,
+      itemBuilder: (context, index) {
+        return _buildProjectCard(_filteredProjects[index], index);
+      },
+    );
+  }
+
+  Widget _buildProjectCard(Map<String, dynamic> project, int index) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        final delayedValue = (_animationController.value).clamp(0.0, 1.0);
+
+        final curvedValue = Curves.easeOutCubic.transform(delayedValue);
+
+        return Transform.translate(
+          offset: Offset(0, (1 - curvedValue) * 20),
+          child: Opacity(
+            opacity: curvedValue,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.cardGradient.colors.first.withOpacity(0.9),
+                      AppColors.cardGradient.colors.last.withOpacity(0.9),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: AppColors.primary.withOpacity(0.15),
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withOpacity(0.08),
+                      blurRadius: 25,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 8),
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 10,
+                      spreadRadius: -5,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: -20,
+                        right: -20,
+                        child: Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withOpacity(0.03),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(28),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildProjectHeader(project),
+                            const SizedBox(height: 20),
+                            _buildProjectDescription(project),
+                            const SizedBox(height: 20),
+                            _buildTechnologies(project),
+                            const Spacer(),
+                            _buildProjectActions(project),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        top: 20,
+                        right: 20,
+                        child: _buildStatusBadge(project['status']),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildStatusBadge(String status) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      decoration: BoxDecoration(
+        color: _getStatusColor(status),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: _getStatusColor(status).withOpacity(0.4),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 6,
+            height: 6,
+            margin: const EdgeInsets.only(left: 4),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            status,
+            style: GoogleFonts.poppins(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+              letterSpacing: 0.8,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProjectHeader(Map<String, dynamic> project) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          margin: const EdgeInsets.only(bottom: 12),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+          ),
+          child: Icon(
+            project['category'] == 'Mobile App'
+                ? Icons.phone_iphone
+                : project['category'] == 'Web App'
+                    ? Icons.web
+                    : Icons.code,
+            color: AppColors.primary,
+            size: 20,
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    project['title'],
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimary,
+                      height: 1.2,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary.withOpacity(0.08),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: AppColors.primary.withOpacity(0.15)),
+                    ),
+                    child: Text(
+                      project['category'],
+                      style: GoogleFonts.poppins(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primary,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProjectDescription(Map<String, dynamic> project) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          project['description'],
+          style: GoogleFonts.poppins(
+            fontSize: 13,
+            color: AppColors.textSecondary,
+            height: 1.5,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 6),
+      ],
+    );
+  }
+
+  Widget _buildTechnologies(Map<String, dynamic> project) {
+    final technologies = (project['technologies'] as List<String>);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Technologies Used:',
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: technologies.take(4).map((tech) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(8),
+                border:
+                    Border.all(color: AppColors.textTertiary.withOpacity(0.2)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.03),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                tech,
+                style: GoogleFonts.poppins(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+        if (technologies.length > 4)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              '+ ${technologies.length - 5} more',
+              style: GoogleFonts.poppins(
+                fontSize: 11,
+                color: AppColors.textTertiary,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildProjectActions(Map<String, dynamic> project) {
+    return Container(
+      padding: const EdgeInsets.only(top: 15),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: AppColors.textTertiary.withOpacity(0.1)),
+        ),
+      ),
+      child: Row(
+        children: [
+          if (project['githubUrl'] != null)
+            _buildActionButton(
+              icon: FontAwesomeIcons.github,
+              label: 'Source Code',
+              color: AppColors.github,
+              onTap: () => _launchUrl(project['githubUrl']),
+            ),
+          if (project['githubUrl'] != null && project['demoUrl'] != null)
+            const SizedBox(width: 12),
+          if (project['demoUrl'] != null)
+            _buildActionButton(
+              icon: Icons.launch,
+              label: 'Live Demo',
+              color: AppColors.primary,
+              onTap: () => _launchUrl(project['demoUrl']),
+            ),
+          const Spacer(),
+          InkWell(
+            onTap: () => _showProjectDetails(project),
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                gradient: AppColors.primaryGradient,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'View Details',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 12,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.08),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: color.withOpacity(0.2)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 14, color: color),
+              const SizedBox(width: 8),
+              Text(
+                label,
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: color,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Color _getStatusColor(String status) {
+    switch (status) {
+      case 'Completed':
+        return AppColors.success;
+      case 'In Progress':
+        return AppColors.warning;
+      case 'Planning':
+        return AppColors.primary;
+      case 'On Hold':
+        return AppColors.error;
+      default:
+        return AppColors.secondary;
+    }
   }
 
   void _launchUrl(String url) async {
@@ -610,7 +1132,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
                   ),
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.close, color: AppColors.textSecondary),
+                    icon:
+                        const Icon(Icons.close, color: AppColors.textSecondary),
                   ),
                 ],
               ),
@@ -624,8 +1147,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
                 ),
               ),
               const SizedBox(height: 15),
-              ...(project['features'] as List<String>).map((feature) => 
-                Padding(
+              ...(project['features'] as List<String>).map(
+                (feature) => Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Row(
                     children: [
