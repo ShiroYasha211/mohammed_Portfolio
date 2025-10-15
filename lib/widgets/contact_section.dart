@@ -4,6 +4,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import '../service/email_service.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -123,16 +124,18 @@ class _ContactSectionState extends State<ContactSection>
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppTheme.sectionPadding,
-          horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+          horizontal: isMobile
+              ? 20
+              : isTablet
+                  ? 60
+                  : 120,
         ),
         color: AppColors.background,
         child: Column(
           children: [
             _buildSectionHeader(),
             const SizedBox(height: 60),
-            isMobile 
-              ? _buildMobileLayout()
-              : _buildDesktopLayout(),
+            isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
             const SizedBox(height: 60),
             _buildFooter(),
           ],
@@ -315,7 +318,7 @@ class _ContactSectionState extends State<ContactSection>
                   ],
                 ),
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_forward_ios,
                 color: AppColors.textTertiary,
                 size: 16,
@@ -340,7 +343,7 @@ class _ContactSectionState extends State<ContactSection>
         children: [
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.access_time,
                 color: AppColors.primary,
                 size: 20,
@@ -438,15 +441,21 @@ class _ContactSectionState extends State<ContactSection>
             const SizedBox(height: 30),
             Row(
               children: [
-                Expanded(child: _buildTextField('Name', _nameController, Icons.person)),
+                Expanded(
+                    child:
+                        _buildTextField('Name', _nameController, Icons.person)),
                 const SizedBox(width: 20),
-                Expanded(child: _buildTextField('Email', _emailController, Icons.email, isEmail: true)),
+                Expanded(
+                    child: _buildTextField(
+                        'Email', _emailController, Icons.email,
+                        isEmail: true)),
               ],
             ),
             const SizedBox(height: 20),
             _buildTextField('Subject', _subjectController, Icons.subject),
             const SizedBox(height: 20),
-            _buildTextField('Message', _messageController, Icons.message, isMultiline: true),
+            _buildTextField('Message', _messageController, Icons.message,
+                isMultiline: true),
             const SizedBox(height: 30),
             _buildSubmitButton(),
           ],
@@ -455,7 +464,9 @@ class _ContactSectionState extends State<ContactSection>
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, IconData icon, {bool isEmail = false, bool isMultiline = false}) {
+  Widget _buildTextField(
+      String label, TextEditingController controller, IconData icon,
+      {bool isEmail = false, bool isMultiline = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -511,7 +522,8 @@ class _ContactSectionState extends State<ContactSection>
             if (value == null || value.isEmpty) {
               return '$label is required';
             }
-            if (isEmail && !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+            if (isEmail &&
+                !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
               return 'Please enter a valid email';
             }
             return null;
@@ -526,16 +538,16 @@ class _ContactSectionState extends State<ContactSection>
       width: double.infinity,
       child: ElevatedButton.icon(
         onPressed: _isSubmitting ? null : _submitForm,
-        icon: _isSubmitting 
-          ? SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            )
-          : const Icon(Icons.send),
+        icon: _isSubmitting
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: const CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            : const Icon(Icons.send),
         label: Text(
           _isSubmitting ? 'Sending...' : 'Send Message',
           style: GoogleFonts.poppins(
@@ -601,16 +613,11 @@ class _ContactSectionState extends State<ContactSection>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Built with ',
+                  'Built',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: AppColors.textSecondary,
                   ),
-                ),
-                Icon(
-                  Icons.favorite,
-                  color: AppColors.error,
-                  size: 16,
                 ),
                 Text(
                   ' using Flutter',
@@ -633,37 +640,103 @@ class _ContactSectionState extends State<ContactSection>
         _isSubmitting = true;
       });
 
-      // TODO: Implement actual form submission logic
-      // For now, simulate form submission
-      await Future.delayed(const Duration(seconds: 2));
+      try {
+        final result = await EmailService.sendContactEmail(
+          name: _nameController.text.trim(),
+          email: _emailController.text.trim(),
+          subject: _subjectController.text.trim(),
+          message: _messageController.text.trim(),
+        );
 
-      setState(() {
-        _isSubmitting = false;
-      });
+        setState(() {
+          _isSubmitting = false;
+        });
 
-      // Show success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Message sent successfully! I\'ll get back to you soon.',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          backgroundColor: AppColors.success,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
+        if (result.success) {
+          _showSuccessSnackBar(result.message);
 
-      // Clear form
-      _nameController.clear();
-      _emailController.clear();
-      _subjectController.clear();
-      _messageController.clear();
+          _clearForm();
+        } else {
+          _showErrorSnackBar(result.message);
+        }
+      } catch (error) {
+        setState(() {
+          _isSubmitting = false;
+        });
+
+        _showErrorSnackBar('حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.');
+      }
     }
+  }
+
+  void _clearForm() {
+    _nameController.clear();
+    _emailController.clear();
+    _subjectController.clear();
+    _messageController.clear();
+  }
+
+  void _showSuccessSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.check_circle, color: Colors.white),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: AppColors.success,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 4),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: const EdgeInsets.all(16),
+      ),
+    );
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.error_outline, color: Colors.white),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: AppColors.error,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: const EdgeInsets.all(16),
+        action: SnackBarAction(
+          label: 'إعادة المحاولة',
+          textColor: Colors.white,
+          onPressed: _submitForm,
+        ),
+      ),
+    );
   }
 
   void _launchUrl(String url) async {

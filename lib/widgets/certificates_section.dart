@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import 'package:web/web.dart' as html;
 
 class CertificatesSection extends StatefulWidget {
   const CertificatesSection({super.key});
@@ -18,68 +19,88 @@ class _CertificatesSectionState extends State<CertificatesSection>
   late Animation<Offset> _slideAnimation;
   bool _isVisible = false;
 
-  // TODO: Add your actual certificates here
   final List<Map<String, dynamic>> _certificates = [
     {
-      'title': 'Flutter Development Certificate',
-      'issuer': 'Google',
-      'date': '2023',
-      'description': 'Comprehensive Flutter development certification covering advanced mobile app development.',
-      'pdfUrl': 'assets/certificates/flutter_certificate.pdf', // TODO: Add actual PDF path
-      'credentialId': 'FL001234567',
-      'category': 'Mobile Development',
-      'skills': ['Flutter', 'Dart', 'Mobile UI/UX'],
-      'verificationUrl': 'https://verify.google.com/flutter-cert', // TODO: Add actual URL
-    },
-    {
-      'title': 'JavaScript Fundamentals',
-      'issuer': 'freeCodeCamp',
-      'date': '2022',
-      'description': 'Complete JavaScript fundamentals course including ES6+ features and modern development practices.',
-      'pdfUrl': 'assets/certificates/javascript_certificate.pdf', // TODO: Add actual PDF path
-      'credentialId': 'JS987654321',
-      'category': 'Web Development',
-      'skills': ['JavaScript', 'ES6+', 'DOM Manipulation'],
-      'verificationUrl': 'https://freecodecamp.org/verify/js-cert', // TODO: Add actual URL
-    },
-    {
-      'title': 'Database Management',
-      'issuer': 'Oracle University',
-      'date': '2022',
-      'description': 'Database design, management, and optimization using Oracle SQL and MySQL.',
-      'pdfUrl': 'assets/certificates/database_certificate.pdf', // TODO: Add actual PDF path
-      'credentialId': 'DB456789123',
-      'category': 'Database',
-      'skills': ['SQL', 'Database Design', 'MySQL', 'Oracle'],
-      'verificationUrl': 'https://oracle.com/verify/db-cert', // TODO: Add actual URL
-    },
-    {
-      'title': 'Computer Information Systems Degree',
-      'issuer': 'University',
-      'date': '2021',
-      'description': 'Bachelor\'s degree in Computer Information Systems with focus on software development.',
-      'pdfUrl': 'assets/certificates/degree_certificate.pdf', // TODO: Add actual PDF path
-      'credentialId': 'UNI2021CIS',
-      'category': 'Education',
-      'skills': ['Programming', 'Systems Analysis', 'Software Engineering'],
-      'verificationUrl': null, // Academic certificates may not have online verification
-    },
-    // TODO: Add more certificates as you obtain them
-    {
-      'title': 'Python Programming',
-      'issuer': 'Coursera',
-      'date': '2022',
-      'description': 'Python programming fundamentals and advanced concepts for software development.',
-      'pdfUrl': 'assets/certificates/python_certificate.pdf', // TODO: Add actual PDF path
-      'credentialId': 'PY123456789',
+      'title': 'Computer Essentials',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'Comprehensive course covering computer basics, internet usage, and essential software applications.',
+      'pdfUrl': 'assets/certificates/computer_essentials.pdf',
       'category': 'Programming',
-      'skills': ['Python', 'OOP', 'Data Structures'],
-      'verificationUrl': 'https://coursera.org/verify/python-cert', // TODO: Add actual URL
+      'skills': ['Computer Basics', 'Internet', 'Software Applications'],
+    },
+    {
+      'title': 'Interaction Design Fundamentals',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'Fundamentals of interaction design, user experience principles, and usability testing.',
+      'pdfUrl': 'assets/certificates/Interaction Design Fundamentals.pdf',
+      'category': 'Design',
+      'skills': ['UX Design', 'Usability', 'User Research'],
+    },
+    {
+      'title': 'Practical Computer Programs',
+      'issuer': 'Different Academy',
+      'date': '2022',
+      'description':
+          'Hands-on course on essential computer programs including MS Office and Google Workspace.',
+      'pdfUrl': 'assets/certificates/practical computer programs.pdf',
+      'category': 'Programming',
+      'skills': ['MS Office', 'Google Workspace', 'Productivity'],
+    },
+    {
+      'title': 'UI/UX Design',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'Fundamentals of UI/UX design, user experience principles, and usability testing.',
+      'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
+      'category': 'Design',
+      'skills': ['UX Design', 'Usability', 'User Research'],
+    },
+    {
+      'title': 'User Experience Design',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'This course is about what it takes to understand users, design for them, and evaluate your designs.',
+      'pdfUrl': 'assets/certificates/User Experience Design.pdf',
+      'category': 'Design',
+      'skills': ['User Research', 'Prototyping', 'Usability Testing'],
+    },
+    {
+      'title': 'User interface design principles',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'This Course explain the principles of visual design and how to apply them to create effective user interfaces.',
+      'pdfUrl': 'assets/certificates/User interface design principles.pdf',
+      'category': 'Design',
+      'skills': ['UI Design', 'Visual Design', 'Interaction Design'],
+    },
+    {
+      'title': 'UX Research',
+      'issuer': 'Edraak',
+      'date': '2025',
+      'description':
+          'This course covers the basic knowledge of UX research, including planning, conducting, and analyzing research studies.',
+      'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
+      'category': 'Design',
+      'skills': ['User Research', 'Prototyping', 'Usability Testing'],
     },
   ];
 
   String _selectedCategory = 'All';
-  final List<String> _categories = ['All', 'Mobile Development', 'Web Development', 'Database', 'Programming', 'Education'];
+  final List<String> _categories = [
+    'All',
+    //'Mobile Development',
+    //'Web Development',
+    //'Database',
+    'Programming',
+    'Education'
+  ];
 
   @override
   void initState() {
@@ -123,7 +144,9 @@ class _CertificatesSectionState extends State<CertificatesSection>
     if (_selectedCategory == 'All') {
       return _certificates;
     }
-    return _certificates.where((cert) => cert['category'] == _selectedCategory).toList();
+    return _certificates
+        .where((cert) => cert['category'] == _selectedCategory)
+        .toList();
   }
 
   @override
@@ -142,7 +165,11 @@ class _CertificatesSectionState extends State<CertificatesSection>
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: AppTheme.sectionPadding,
-          horizontal: isMobile ? 20 : isTablet ? 60 : 120,
+          horizontal: isMobile
+              ? 20
+              : isTablet
+                  ? 60
+                  : 120,
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -157,8 +184,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
         child: Column(
           children: [
             _buildSectionHeader(),
-            const SizedBox(height: 40),
-            _buildCategoryFilter(),
+            // const SizedBox(height: 40),
+            // _buildCategoryFilter(),
             const SizedBox(height: 60),
             _buildCertificatesGrid(),
           ],
@@ -206,7 +233,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
   Widget _buildCategoryFilter() {
     return FadeTransition(
       opacity: _fadeAnimation,
-      child: Container(
+      child: SizedBox(
         height: 50,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -228,12 +255,16 @@ class _CertificatesSectionState extends State<CertificatesSection>
                   },
                   borderRadius: BorderRadius.circular(25),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
                     decoration: BoxDecoration(
-                      color: isSelected ? AppColors.primary : Colors.transparent,
+                      color:
+                          isSelected ? AppColors.primary : Colors.transparent,
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
-                        color: isSelected ? AppColors.primary : AppColors.textTertiary,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.textTertiary,
                       ),
                     ),
                     child: Text(
@@ -241,7 +272,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: isSelected ? Colors.white : AppColors.textSecondary,
+                        color:
+                            isSelected ? Colors.white : AppColors.textSecondary,
                       ),
                     ),
                   ),
@@ -268,12 +300,15 @@ class _CertificatesSectionState extends State<CertificatesSection>
 
   Widget _buildMobileCertificatesList() {
     return Column(
-      children: _filteredCertificates.map((certificate) => 
-        Padding(
-          padding: const EdgeInsets.only(bottom: 25),
-          child: _buildCertificateCard(certificate, _filteredCertificates.indexOf(certificate)),
-        ),
-      ).toList(),
+      children: _filteredCertificates
+          .map(
+            (certificate) => Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: _buildMobileCertificateCard(
+                  certificate, _filteredCertificates.indexOf(certificate)),
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -298,7 +333,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        final delayedValue = (_animationController.value - (index * 0.15)).clamp(0.0, 1.0);
+        final delayedValue =
+            (_animationController.value - (0 * 0.15)).clamp(0.0, 1.0);
         return Transform.scale(
           scale: 0.8 + (delayedValue * 0.2),
           child: Opacity(
@@ -333,6 +369,256 @@ class _CertificatesSectionState extends State<CertificatesSection>
           ),
         );
       },
+    );
+  }
+
+  Widget _buildMobileCertificateCard(
+      Map<String, dynamic> certificate, int index) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        final delayedValue =
+            (_animationController.value - (0 * 0.1)).clamp(0.0, 1.0);
+        if (delayedValue <= 0) return const SizedBox.shrink();
+
+        return Transform.translate(
+          offset: Offset(0, (1 - delayedValue) * 20),
+          child: Opacity(
+            opacity: delayedValue,
+            child: Container(
+              width: double.infinity, // مهم للهاتف
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: AppColors.cardGradient,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: AppColors.primary.withOpacity(0.2),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.1),
+                    blurRadius: 15,
+                    spreadRadius: 3,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildMobileCertificateHeader(certificate),
+                  const SizedBox(height: 12),
+                  _buildMobileCertificateBody(certificate),
+                  const SizedBox(height: 15),
+                  _buildMobileCertificateActions(certificate),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMobileCertificateHeader(Map<String, dynamic> certificate) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(
+                _getCategoryIcon(certificate['category']),
+                color: AppColors.primary,
+                size: 20,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    certificate['title'],
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimary,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    certificate['issuer'],
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.success.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: AppColors.success.withOpacity(0.3)),
+              ),
+              child: Text(
+                certificate['date'],
+                style: GoogleFonts.poppins(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.success,
+                ),
+              ),
+            ),
+            const Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.accent.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: AppColors.accent.withOpacity(0.3)),
+              ),
+              child: Text(
+                certificate['category'],
+                style: GoogleFonts.poppins(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.accent,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileCertificateBody(Map<String, dynamic> certificate) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          certificate['description'],
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            color: AppColors.textSecondary,
+            height: 1.4,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 12),
+        if (certificate['credentialId'] != null) ...[
+          Row(
+            children: [
+              const Icon(
+                Icons.verified,
+                color: AppColors.primary,
+                size: 14,
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  'ID: ${certificate['credentialId']}',
+                  style: GoogleFonts.poppins(
+                    fontSize: 10,
+                    color: AppColors.textTertiary,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+        ],
+        Wrap(
+          spacing: 5,
+          runSpacing: 5,
+          children:
+              (certificate['skills'] as List<String>).take(2).map((skill) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(10),
+                border:
+                    Border.all(color: AppColors.textTertiary.withOpacity(0.3)),
+              ),
+              child: Text(
+                skill,
+                style: GoogleFonts.poppins(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileCertificateActions(Map<String, dynamic> certificate) {
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton.icon(
+            onPressed: () => _viewCertificate(certificate),
+            icon: const Icon(Icons.picture_as_pdf, size: 14),
+            label: Text(
+              'View PDF',
+              style: GoogleFonts.poppins(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+        ),
+        if (certificate['verificationUrl'] != null) ...[
+          const SizedBox(width: 8),
+          InkWell(
+            onTap: () => _verifyCredential(certificate['verificationUrl']),
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.success.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: AppColors.success.withOpacity(0.3)),
+              ),
+              child: const Icon(
+                Icons.verified,
+                color: AppColors.success,
+                size: 16,
+              ),
+            ),
+          ),
+        ],
+      ],
     );
   }
 
@@ -443,7 +729,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
         if (certificate['credentialId'] != null) ...[
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.verified,
                 color: AppColors.primary,
                 size: 16,
@@ -463,13 +749,15 @@ class _CertificatesSectionState extends State<CertificatesSection>
         Wrap(
           spacing: 6,
           runSpacing: 6,
-          children: (certificate['skills'] as List<String>).take(3).map((skill) {
+          children:
+              (certificate['skills'] as List<String>).take(3).map((skill) {
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.textTertiary.withOpacity(0.3)),
+                border:
+                    Border.all(color: AppColors.textTertiary.withOpacity(0.3)),
               ),
               child: Text(
                 skill,
@@ -522,7 +810,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: AppColors.success.withOpacity(0.3)),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.verified,
                 color: AppColors.success,
                 size: 20,
@@ -545,14 +833,19 @@ class _CertificatesSectionState extends State<CertificatesSection>
         return Icons.code;
       case 'Education':
         return Icons.school;
+      case 'Design':
+        return Icons.design_services;
       default:
         return Icons.verified;
     }
   }
 
   void _viewCertificate(Map<String, dynamic> certificate) {
-    // TODO: Implement PDF viewing functionality
-    // For now, show a placeholder dialog
+    // Show options dialog for viewing PDF
+    _showViewOptionsDialog(certificate);
+  }
+
+  void _showViewOptionsDialog(Map<String, dynamic> certificate) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -561,48 +854,278 @@ class _CertificatesSectionState extends State<CertificatesSection>
           borderRadius: BorderRadius.circular(15),
           side: BorderSide(color: AppColors.primary.withOpacity(0.2)),
         ),
-        title: Text(
-          'Certificate PDF',
-          style: GoogleFonts.poppins(
-            color: AppColors.textPrimary,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(
+                Icons.picture_as_pdf,
+                color: AppColors.primary,
+                size: 24,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'View Certificate',
+                style: GoogleFonts.poppins(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ],
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.picture_as_pdf,
-              color: AppColors.primary,
-              size: 60,
+            Text(
+              certificate['title'],
+              style: GoogleFonts.poppins(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Issued by ${certificate['issuer']} • ${certificate['date']}',
+              style: GoogleFonts.poppins(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+              ),
             ),
             const SizedBox(height: 20),
+            Text(
+              'Choose how you want to view this certificate:',
+              style: GoogleFonts.poppins(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 15),
+
+            // Option 2: Open in Browser
+            _buildViewOption(
+              icon: Icons.open_in_new,
+              title: 'Open in Browser',
+              subtitle: 'Open PDF in a new browser tab',
+              color: AppColors.primary,
+              onTap: () {
+                Navigator.of(context).pop();
+                _openInBrowser(certificate);
+              },
+            ),
+            const SizedBox(height: 12),
+
+            // Option 3: Download
+            _buildViewOption(
+              icon: Icons.download,
+              title: 'Download PDF',
+              subtitle: 'Save certificate to your device',
+              color: AppColors.success,
+              onTap: () {
+                Navigator.of(context).pop();
+                _downloadCertificate(certificate);
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.poppins(
+                color: AppColors.textSecondary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildViewOption({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: color.withOpacity(0.2)),
+          color: color.withOpacity(0.05),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(
+                icon,
+                color: color,
+                size: 20,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.poppins(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: GoogleFonts.poppins(
+                      color: AppColors.textSecondary,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: color.withOpacity(0.6),
+              size: 16,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _openInBrowser(Map<String, dynamic> certificate) {
+    try {
+      final String pdfUrl = certificate['pdfUrl'];
+      html.window.open(pdfUrl, '_blank');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Opening certificate: ${certificate['title']}',
+            style: GoogleFonts.poppins(color: Colors.white),
+          ),
+          backgroundColor: AppColors.success,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    } catch (e) {
+      _showPdfErrorDialog(certificate);
+    }
+  }
+
+  void _showPdfErrorDialog(Map<String, dynamic> certificate) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(color: AppColors.primary.withOpacity(0.2)),
+        ),
+        title: Row(
+          children: [
+            const Icon(
+              Icons.warning_amber_rounded,
+              color: AppColors.warning,
+              size: 24,
+            ),
+            const SizedBox(width: 10),
+            Text(
+              'Certificate Access',
+              style: GoogleFonts.poppins(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Text(
               'Certificate: ${certificate['title']}',
               style: GoogleFonts.poppins(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w600,
+                fontSize: 16,
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             Text(
-              'PDF Path: ${certificate['pdfUrl']}',
+              'Unable to open PDF directly. You can:',
               style: GoogleFonts.poppins(
                 color: AppColors.textSecondary,
-                fontSize: 12,
+                fontSize: 14,
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            Text(
-              'TODO: Implement PDF viewer or download functionality',
-              style: GoogleFonts.poppins(
-                color: AppColors.warning,
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
+            const SizedBox(height: 10),
+            _buildOptionRow(Icons.download, 'Download PDF file', () {
+              _downloadCertificate(certificate);
+              Navigator.of(context).pop();
+            }),
+            const SizedBox(height: 8),
+            _buildOptionRow(Icons.open_in_new, 'Try opening again', () {
+              Navigator.of(context).pop();
+              _viewCertificate(certificate);
+            }),
+            const SizedBox(height: 15),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppColors.primary.withOpacity(0.3)),
               ),
-              textAlign: TextAlign.center,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    color: AppColors.primary,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'PDF Path: ${certificate['pdfUrl']}',
+                      style: GoogleFonts.poppins(
+                        color: AppColors.primary,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -612,7 +1135,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
             child: Text(
               'Close',
               style: GoogleFonts.poppins(
-                color: AppColors.primary,
+                color: AppColors.textSecondary,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -620,6 +1143,85 @@ class _CertificatesSectionState extends State<CertificatesSection>
         ],
       ),
     );
+  }
+
+  Widget _buildOptionRow(IconData icon, String text, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: AppColors.primary,
+              size: 18,
+            ),
+            const SizedBox(width: 12),
+            Text(
+              text,
+              style: GoogleFonts.poppins(
+                color: AppColors.textPrimary,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _downloadCertificate(Map<String, dynamic> certificate) {
+    try {
+      final String pdfUrl = certificate['pdfUrl'];
+      final String fileName =
+          '${certificate['title'].replaceAll(' ', '_')}.pdf';
+
+      // Create download link
+      final html.HTMLAnchorElement anchor =
+          html.document.createElement('a') as html.HTMLAnchorElement;
+      anchor.href = pdfUrl;
+      anchor.download = fileName;
+      anchor.click();
+
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Downloading: $fileName',
+            style: GoogleFonts.poppins(color: Colors.white),
+          ),
+          backgroundColor: AppColors.success,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    } catch (e) {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Failed to download certificate',
+            style: GoogleFonts.poppins(color: Colors.white),
+          ),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    }
   }
 
   void _verifyCredential(String url) async {
