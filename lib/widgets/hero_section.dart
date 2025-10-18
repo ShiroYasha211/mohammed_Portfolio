@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class HeroSection extends StatefulWidget {
   const HeroSection({super.key});
@@ -140,8 +141,8 @@ class _HeroSectionState extends State<HeroSection>
             _buildAnimatedRole(),
             const SizedBox(height: 40),
             _buildDescription(),
-            // const SizedBox(height: 40),
-            // _buildActionButtons(),
+            const SizedBox(height: 40),
+            _buildActionButtons(),
             const SizedBox(height: 30),
             _buildSocialLinks(),
           ],
@@ -169,8 +170,8 @@ class _HeroSectionState extends State<HeroSection>
                   _buildAnimatedRole(),
                   const SizedBox(height: 30),
                   _buildDescription(),
-                  // const SizedBox(height: 40),
-                  // _buildActionButtons(),
+                  const SizedBox(height: 40),
+                  _buildActionButtons(),
                   const SizedBox(height: 30),
                   _buildSocialLinks(),
                 ],
@@ -223,8 +224,8 @@ class _HeroSectionState extends State<HeroSection>
 
   Widget _buildIntroText() {
     return Text(
-      'Hello, I\'m',
-      style: GoogleFonts.poppins(
+      'heroHello'.tr(),
+      style: TextStyle(
         fontSize: MediaQuery.of(context).size.width < 768 ? 20 : 24,
         color: AppColors.textSecondary,
         fontWeight: FontWeight.w400,
@@ -241,8 +242,8 @@ class _HeroSectionState extends State<HeroSection>
             : CrossAxisAlignment.start,
         children: [
           Text(
-            'Mohammed Alhemyari',
-            style: GoogleFonts.poppins(
+            'heroName'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 28 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -252,8 +253,8 @@ class _HeroSectionState extends State<HeroSection>
           AnimatedTextKit(
             animatedTexts: [
               TypewriterAnimatedText(
-                'Flutter Developer',
-                textStyle: GoogleFonts.poppins(
+                'heroRole1'.tr(),
+                textStyle: TextStyle(
                   fontSize: MediaQuery.of(context).size.width < 768 ? 18 : 24,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primary,
@@ -261,8 +262,8 @@ class _HeroSectionState extends State<HeroSection>
                 speed: const Duration(milliseconds: 100),
               ),
               TypewriterAnimatedText(
-                'Mobile App Developer',
-                textStyle: GoogleFonts.poppins(
+                'heroRole2'.tr(),
+                textStyle: TextStyle(
                   fontSize: MediaQuery.of(context).size.width < 768 ? 18 : 24,
                   fontWeight: FontWeight.w600,
                   color: AppColors.secondary,
@@ -270,8 +271,8 @@ class _HeroSectionState extends State<HeroSection>
                 speed: const Duration(milliseconds: 100),
               ),
               TypewriterAnimatedText(
-                'Web Developer',
-                textStyle: GoogleFonts.poppins(
+                'heroRole3'.tr(),
+                textStyle: TextStyle(
                   fontSize: MediaQuery.of(context).size.width < 768 ? 18 : 24,
                   fontWeight: FontWeight.w600,
                   color: AppColors.accent,
@@ -291,8 +292,8 @@ class _HeroSectionState extends State<HeroSection>
 
   Widget _buildDescription() {
     return Text(
-      'Bachelor in Computer Information Systems, passionate about developing mobile and web applications using Flutter. I have practical experience in building diverse applications like forums, delivery systems, portfolios, and dashboards etc...',
-      style: GoogleFonts.poppins(
+      'heroDescription'.tr(),
+      style: TextStyle(
         fontSize: MediaQuery.of(context).size.width < 768 ? 14 : 16,
         color: AppColors.textSecondary,
         height: 1.6,
@@ -311,7 +312,7 @@ class _HeroSectionState extends State<HeroSection>
       children: [
         ElevatedButton(
           onPressed: () {
-            // TODO: Download Resume functionality
+            // TODO: Download CV
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
@@ -328,8 +329,8 @@ class _HeroSectionState extends State<HeroSection>
               const Icon(Icons.download),
               const SizedBox(width: 8),
               Text(
-                'Download CV',
-                style: GoogleFonts.poppins(
+                'downloadCV'.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -350,8 +351,8 @@ class _HeroSectionState extends State<HeroSection>
             ),
           ),
           child: Text(
-            'Contact Me',
-            style: GoogleFonts.poppins(
+            'contactMe'.tr(),
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -427,8 +428,8 @@ class _HeroSectionState extends State<HeroSection>
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Scroll Down',
-            style: GoogleFonts.poppins(
+            'scrollDown'.tr(),
+            style: const TextStyle(
               color: AppColors.textSecondary,
               fontSize: 14,
             ),

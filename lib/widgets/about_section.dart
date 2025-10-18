@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../constants/colors.dart';
 
@@ -20,25 +20,25 @@ class _AboutSectionState extends State<AboutSection>
   final List<Map<String, dynamic>> _stats = [
     {
       'number': '5+',
-      'label': 'Years Experience',
+      'label': 'yearsExperience'.tr(),
       'icon': Icons.code,
       'color': AppColors.primary,
     },
     {
       'number': '10+',
-      'label': 'Projects Completed',
+      'label': 'projectsCompleted'.tr(),
       'icon': Icons.laptop_mac,
       'color': AppColors.secondary,
     },
     {
       'number': '2+',
-      'label': 'Years in Flutter',
+      'label': 'yearsInFlutter'.tr(),
       'icon': Icons.mobile_friendly,
       'color': AppColors.accent,
     },
     {
       'number': '5+',
-      'label': 'Tools & Frameworks',
+      'label': 'toolsFrameworks'.tr(),
       'icon': Icons.settings,
       'color': AppColors.success,
     },
@@ -124,8 +124,8 @@ class _AboutSectionState extends State<AboutSection>
       child: Column(
         children: [
           Text(
-            'About Me',
-            style: GoogleFonts.poppins(
+            'aboutTitle'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 32 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -142,8 +142,8 @@ class _AboutSectionState extends State<AboutSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'Get to know more about me and my journey',
-            style: GoogleFonts.poppins(
+            'aboutSubtitle'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textSecondary,
             ),
@@ -228,8 +228,8 @@ class _AboutSectionState extends State<AboutSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'Mohammed Alhemyari',
-            style: GoogleFonts.poppins(
+            'heroName'.tr(),
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -244,8 +244,8 @@ class _AboutSectionState extends State<AboutSection>
               border: Border.all(color: AppColors.primary.withOpacity(0.3)),
             ),
             child: Text(
-              'Flutter Developer',
-              style: GoogleFonts.poppins(
+              'flutterDeveloper'.tr(),
+              style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.primary,
                 fontWeight: FontWeight.w600,
@@ -266,9 +266,9 @@ class _AboutSectionState extends State<AboutSection>
         const SizedBox(height: 10),
         _buildContactItem(Icons.phone, '+967773468708'),
         const SizedBox(height: 10),
-        _buildContactItem(Icons.work, 'Freelancer'),
+        _buildContactItem(Icons.work, 'freelancer'.tr()),
         const SizedBox(height: 10),
-        _buildContactItem(Icons.language, 'Arabic, English'),
+        _buildContactItem(Icons.language, 'languages'.tr()),
       ],
     );
   }
@@ -285,7 +285,7 @@ class _AboutSectionState extends State<AboutSection>
         Expanded(
           child: Text(
             text,
-            style: GoogleFonts.poppins(
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textSecondary,
             ),
@@ -300,8 +300,8 @@ class _AboutSectionState extends State<AboutSection>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'My Story',
-          style: GoogleFonts.poppins(
+          'myStory'.tr(),
+          style: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: AppColors.textPrimary,
@@ -309,15 +309,15 @@ class _AboutSectionState extends State<AboutSection>
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'I am a passionate software developer with a Bachelor’s degree in Computer Information Systems and several years of hands-on programming experience. I specialize in building modern, high-performance Flutter applications that deliver exceptional user experiences and real-world impact.',
+          "aboutParagraph1".tr(),
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'Throughout my journey, I have developed a wide range of applications — including forum platforms, food delivery systems, e-commerce dashboards, portfolio websites, and online store apps. My focus is on crafting seamless, user-centric experiences that solve practical business challenges across mobile and web platforms.',
+          "aboutParagraph2".tr(),
         ),
         const SizedBox(height: 20),
         _buildParagraph(
-          'As a freelance developer, I’m driven by the challenge of turning complex ideas into elegant, fully functional solutions. My full-stack expertise spans from designing intuitive UI/UX with Flutter to building robust backends using Laravel, and managing APIs and databases for scalable, maintainable performance.',
+          "aboutParagraph3".tr(),
         ),
         const SizedBox(height: 30),
         _buildSkillHighlights(),
@@ -328,7 +328,7 @@ class _AboutSectionState extends State<AboutSection>
   Widget _buildParagraph(String text) {
     return Text(
       text,
-      style: GoogleFonts.poppins(
+      style: const TextStyle(
         fontSize: 16,
         color: AppColors.textSecondary,
         height: 1.6,
@@ -339,19 +339,19 @@ class _AboutSectionState extends State<AboutSection>
 
   Widget _buildSkillHighlights() {
     final highlights = [
-      'UI/UX Design with Flutter',
-      'Backend Integration',
-      'API Development',
-      'Database Management',
-      'Cross-platform Development',
+      'uiuxDesign'.tr(),
+      'backendIntegration'.tr(),
+      'apiDevelopment'.tr(),
+      'databaseManagement'.tr(),
+      'crossPlatformDev'.tr(),
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'What I Do',
-          style: GoogleFonts.poppins(
+          'whatIDo'.tr(),
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: AppColors.textPrimary,
@@ -373,7 +373,7 @@ class _AboutSectionState extends State<AboutSection>
                   const SizedBox(width: 12),
                   Text(
                     highlight,
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 15,
                       color: AppColors.textSecondary,
                     ),
@@ -456,7 +456,7 @@ class _AboutSectionState extends State<AboutSection>
                 const SizedBox(height: 15),
                 Text(
                   stat['number'],
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: stat['color'],
@@ -464,8 +464,8 @@ class _AboutSectionState extends State<AboutSection>
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  stat['label'],
-                  style: GoogleFonts.poppins(
+                  stat['label'.tr()],
+                  style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.textSecondary,
                   ),

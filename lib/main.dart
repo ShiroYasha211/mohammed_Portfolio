@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'widgets/hero_section.dart';
 import 'widgets/about_section.dart';
@@ -8,8 +9,15 @@ import 'widgets/contact_section.dart';
 import 'widgets/navbar.dart';
 import 'constants/colors.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(EasyLocalization(
+    supportedLocales: const [Locale('en'), Locale('ar')],
+    path: 'assets/translations',
+    fallbackLocale: const Locale('en'),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +26,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       title: 'Mohammed Alhemyari - Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: context.locale.languageCode == 'ar' ? 'Cairo' : 'Poppins',
+        platform: TargetPlatform.iOS,
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: AppColors.background,
         visualDensity: VisualDensity.adaptivePlatformDensity,

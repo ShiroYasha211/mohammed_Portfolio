@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:mohammed_portfolio/main.dart';
+import 'package:provider/provider.dart';
 import '../constants/colors.dart';
 
 class CustomNavBar extends StatefulWidget {
@@ -19,7 +21,7 @@ class CustomNavBar extends StatefulWidget {
 }
 
 class _CustomNavBarState extends State<CustomNavBar> {
-  String selectedSection = 'Home';
+  String selectedSection = 'home'.tr();
 
   void _updateSelectionSection() {
     final scrollPosition = widget.scrollController.position.pixels;
@@ -28,16 +30,31 @@ class _CustomNavBarState extends State<CustomNavBar> {
     if (context != null) {
       final RenderBox renderBox = context.findRenderObject() as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
-      //final size = renderBox.size;
 
       Future.delayed(const Duration(milliseconds: 200), () {
         if (scrollPosition >= position.dy - 100) {
           setState(() {
-            selectedSection = 'Home';
+            selectedSection = 'home'.tr();
           });
         }
       });
     }
+  }
+
+  void _toggleLanguage() async {
+    if (context.locale.languageCode == 'en') {
+      await context.setLocale(const Locale('ar'));
+    } else {
+      await context.setLocale(const Locale('en'));
+    }
+
+    _reloadApp();
+  }
+
+  void _reloadApp() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const PortfolioHome()),
+        (route) => false);
   }
 
   @override
@@ -96,9 +113,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
               ),
               const SizedBox(width: 12),
               if (!isMobile) ...[
-                Text(
+                const Text(
                   'Mohammed Alhemyari',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: AppColors.textPrimary,
@@ -108,8 +125,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
             ],
           ),
 
-          // Navigation Items
-          if (isMobile) _buildMobileMenu() else _buildDesktopMenu(),
+          // Navigation Items and Language Toggle
+          Row(
+            children: [
+              if (!isMobile) _buildDesktopMenu(),
+              _buildLanguageToggle(),
+              if (isMobile) _buildMobileMenu()
+            ],
+          ),
         ],
       ),
     );
@@ -117,12 +140,12 @@ class _CustomNavBarState extends State<CustomNavBar> {
 
   Widget _buildDesktopMenu() {
     final menuItems = [
-      {'title': 'Home', 'key': 'home'},
-      {'title': 'About', 'key': 'about'},
-      {'title': 'Skills', 'key': 'skills'},
-      {'title': 'Projects', 'key': 'projects'},
-      {'title': 'Certificates', 'key': 'certificates'},
-      {'title': 'Contact', 'key': 'contact'},
+      {'title': 'home'.tr(), 'key': 'home'},
+      {'title': 'about'.tr(), 'key': 'about'},
+      {'title': 'skills'.tr(), 'key': 'skills'},
+      {'title': 'projects'.tr(), 'key': 'projects'},
+      {'title': 'certificates'.tr(), 'key': 'certificates'},
+      {'title': 'contact'.tr(), 'key': 'contact'},
     ];
     return Row(
       children: menuItems.map((item) {
@@ -153,7 +176,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 ),
                 child: Text(
                   item['title'] as String,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     color: isSelected
@@ -170,48 +193,102 @@ class _CustomNavBarState extends State<CustomNavBar> {
   }
 
   Widget _buildMobileMenu() {
-    return PopupMenuButton<String>(
-      icon: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
+    return Row(
+      children: [
+        const SizedBox(width: 12),
+        PopupMenuButton<String>(
+          icon: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(
+              Icons.menu,
+              color: AppColors.primary,
+            ),
+          ),
           color: AppColors.surface,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Icon(
-          Icons.menu,
-          color: AppColors.primary,
-        ),
-      ),
-      color: AppColors.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      itemBuilder: (context) => [
-        _buildPopupMenuItem('Home'),
-        _buildPopupMenuItem('About'),
-        _buildPopupMenuItem('Skills'),
-        _buildPopupMenuItem('Projects'),
-        _buildPopupMenuItem('Certificates'),
-        _buildPopupMenuItem('Contact'),
-      ],
-      onSelected: (value) {
-        setState(() {
-          selectedSection = value;
-        });
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          itemBuilder: (context) => [
+            _buildPopupMenuItem('home'.tr(), 'home'),
+            _buildPopupMenuItem('about'.tr(), 'about'),
+            _buildPopupMenuItem('skills'.tr(), 'skills'),
+            _buildPopupMenuItem('projects'.tr(), 'projects'),
+            _buildPopupMenuItem('certificates'.tr(), 'certificates'),
+            _buildPopupMenuItem('contact'.tr(), 'contact'),
+          ],
+          onSelected: (value) {
+            setState(() {
+              selectedSection = value;
+            });
 
-        widget.onNavigate(value.toLowerCase());
-      },
+            widget.onNavigate(_getKeyFromTitle(value));
+          },
+        ),
+      ],
     );
   }
 
-  PopupMenuItem<String> _buildPopupMenuItem(String title) {
+  String _getKeyFromTitle(String title) {
+    final keys = {
+      'home'.tr(): 'home',
+      'about'.tr(): 'about',
+      'skills'.tr(): 'skills',
+      'projects'.tr(): 'projects',
+      'certificates'.tr(): 'certificates',
+      'contact'.tr(): 'contact',
+    };
+    return keys[title] ?? 'home';
+  }
+
+  PopupMenuItem<String> _buildPopupMenuItem(String title, String key) {
     return PopupMenuItem<String>(
       value: title,
       child: Text(
         title,
-        style: GoogleFonts.poppins(
+        style: const TextStyle(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLanguageToggle() {
+    return Container(
+      margin: const EdgeInsets.only(left: 12),
+      child: InkWell(
+        onTap: _toggleLanguage,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.language,
+                color: AppColors.primary,
+                size: 20,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                context.locale.languageCode == 'ar' ? 'EN' : 'AR',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
