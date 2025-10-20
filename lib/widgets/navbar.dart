@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mohammed_portfolio/main.dart';
-import 'package:provider/provider.dart';
 import '../constants/colors.dart';
 
 class CustomNavBar extends StatefulWidget {

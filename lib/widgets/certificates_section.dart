@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:web/web.dart' as html;
 
 class CertificatesSection extends StatefulWidget {
@@ -21,85 +21,107 @@ class _CertificatesSectionState extends State<CertificatesSection>
 
   final List<Map<String, dynamic>> _certificates = [
     {
-      'title': 'Computer Essentials',
-      'issuer': 'Edraak',
+      'title': 'computer_essentials_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'Comprehensive course covering computer basics, internet usage, and essential software applications.',
+      'description': 'computer_essentials_description'.tr(),
       'pdfUrl': 'assets/certificates/computer_essentials.pdf',
-      'category': 'Programming',
-      'skills': ['Computer Basics', 'Internet', 'Software Applications'],
+      'category': 'programming'.tr(),
+      'skills': [
+        'computer_basics'.tr(),
+        'internet'.tr(),
+        'software_applications'.tr(),
+      ],
     },
     {
-      'title': 'Interaction Design Fundamentals',
-      'issuer': 'Edraak',
+      'title': 'interaction_design_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'Fundamentals of interaction design, user experience principles, and usability testing.',
+      'description': 'interaction_design_description'.tr(),
       'pdfUrl': 'assets/certificates/Interaction Design Fundamentals.pdf',
-      'category': 'Design',
-      'skills': ['UX Design', 'Usability', 'User Research'],
+      'category': 'design'.tr(),
+      'skills': [
+        'ux_design'.tr(),
+        'usability'.tr(),
+        'user_research'.tr(),
+      ],
     },
     {
-      'title': 'Practical Computer Programs',
-      'issuer': 'Different Academy',
+      'title': 'practical_programs_title'.tr(),
+      'issuer': 'different_academy'.tr(),
       'date': '2022',
-      'description':
-          'Hands-on course on essential computer programs including MS Office and Google Workspace.',
+      'description': 'practical_programs_description'.tr(),
       'pdfUrl': 'assets/certificates/practical computer programs.pdf',
-      'category': 'Programming',
-      'skills': ['MS Office', 'Google Workspace', 'Productivity'],
+      'category': 'programming'.tr(),
+      'skills': [
+        'ms_office'.tr(),
+        'google_workspace'.tr(),
+        'productivity'.tr(),
+      ],
     },
     {
-      'title': 'UI/UX Design',
-      'issuer': 'Edraak',
+      'title': 'ui_ux_design_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'Fundamentals of UI/UX design, user experience principles, and usability testing.',
+      'description': 'ui_ux_design_description'.tr(),
       'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
-      'category': 'Design',
-      'skills': ['UX Design', 'Usability', 'User Research'],
+      'category': 'design'.tr(),
+      'skills': [
+        'ux_design'.tr(),
+        'usability'.tr(),
+        'user_research'.tr(),
+      ],
     },
     {
-      'title': 'User Experience Design',
-      'issuer': 'Edraak',
+      'title': 'user_experience_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'This course is about what it takes to understand users, design for them, and evaluate your designs.',
+      'description': 'user_experience_description'.tr(),
       'pdfUrl': 'assets/certificates/User Experience Design.pdf',
-      'category': 'Design',
-      'skills': ['User Research', 'Prototyping', 'Usability Testing'],
+      'category': 'design'.tr(),
+      'skills': [
+        'user_research'.tr(),
+        'prototyping'.tr(),
+        'usability_testing'.tr(),
+      ],
     },
     {
-      'title': 'User interface design principles',
-      'issuer': 'Edraak',
+      'title': 'ui_principles_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'This Course explain the principles of visual design and how to apply them to create effective user interfaces.',
+      'description': 'ui_principles_description'.tr(),
       'pdfUrl': 'assets/certificates/User interface design principles.pdf',
-      'category': 'Design',
-      'skills': ['UI Design', 'Visual Design', 'Interaction Design'],
+      'category': 'design'.tr(),
+      'skills': [
+        'ui_design'.tr(),
+        'visual_design'.tr(),
+        'interaction_design'.tr(),
+      ],
     },
     {
-      'title': 'UX Research',
-      'issuer': 'Edraak',
+      'title': 'ux_research_title'.tr(),
+      'issuer': 'edraak'.tr(),
       'date': '2025',
-      'description':
-          'This course covers the basic knowledge of UX research, including planning, conducting, and analyzing research studies.',
+      'description': 'ux_research_description'.tr(),
       'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
-      'category': 'Design',
-      'skills': ['User Research', 'Prototyping', 'Usability Testing'],
+      'category': 'design'.tr(),
+      'skills': [
+        'user_research'.tr(),
+        'prototyping'.tr(),
+        'usability_testing'.tr(),
+      ],
     },
   ];
 
-  String _selectedCategory = 'All';
+  String _selectedCategory = 'all'.tr();
   final List<String> _categories = [
-    'All',
-    //'Mobile Development',
-    //'Web Development',
-    //'Database',
-    'Programming',
-    'Education'
+    'all'.tr(),
+    'mobileDevelopment'.tr(),
+    'webDevelopment'.tr(),
+    'database'.tr(),
+    'programming'.tr(),
+    'design'.tr(),
+    'education'.tr()
   ];
 
   @override
@@ -141,7 +163,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
   }
 
   List<Map<String, dynamic>> get _filteredCertificates {
-    if (_selectedCategory == 'All') {
+    if (_selectedCategory == 'all'.tr()) {
       return _certificates;
     }
     return _certificates
@@ -200,8 +222,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
       child: Column(
         children: [
           Text(
-            'Certificates & Education',
-            style: GoogleFonts.poppins(
+            'certificatesTitle'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 32 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -218,8 +240,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'My professional certifications and educational achievements',
-            style: GoogleFonts.poppins(
+            "certificatesSubtitle".tr(),
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textSecondary,
             ),
@@ -269,7 +291,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                     ),
                     child: Text(
                       category,
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color:
@@ -386,7 +408,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
           child: Opacity(
             opacity: delayedValue,
             child: Container(
-              width: double.infinity, // مهم للهاتف
+              width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: AppColors.cardGradient,
@@ -444,7 +466,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                 children: [
                   Text(
                     certificate['title'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimary,
@@ -455,7 +477,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                   const SizedBox(height: 4),
                   Text(
                     certificate['issuer'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
@@ -478,7 +500,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 certificate['date'],
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: AppColors.success,
@@ -495,7 +517,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 certificate['category'],
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                   color: AppColors.accent,
@@ -514,7 +536,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       children: [
         Text(
           certificate['description'],
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontSize: 12,
             color: AppColors.textSecondary,
             height: 1.4,
@@ -535,7 +557,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               Expanded(
                 child: Text(
                   'ID: ${certificate['credentialId']}',
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                     fontSize: 10,
                     color: AppColors.textTertiary,
                   ),
@@ -561,7 +583,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 skill,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 9,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textSecondary,
@@ -582,8 +604,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
             onPressed: () => _viewCertificate(certificate),
             icon: const Icon(Icons.picture_as_pdf, size: 14),
             label: Text(
-              'View PDF',
-              style: GoogleFonts.poppins(
+              'viewPDF'.tr(),
+              style: const TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
               ),
@@ -647,7 +669,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                 children: [
                   Text(
                     certificate['title'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimary,
@@ -658,7 +680,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                   const SizedBox(height: 5),
                   Text(
                     certificate['issuer'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
@@ -681,7 +703,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 certificate['date'],
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: AppColors.success,
@@ -698,7 +720,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 certificate['category'],
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: AppColors.accent,
@@ -717,7 +739,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       children: [
         Text(
           certificate['description'],
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontSize: 13,
             color: AppColors.textSecondary,
             height: 1.4,
@@ -737,7 +759,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               const SizedBox(width: 8),
               Text(
                 'ID: ${certificate['credentialId']}',
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 11,
                   color: AppColors.textTertiary,
                 ),
@@ -761,7 +783,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
               ),
               child: Text(
                 skill,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textSecondary,
@@ -782,8 +804,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
             onPressed: () => _viewCertificate(certificate),
             icon: const Icon(Icons.picture_as_pdf, size: 16),
             label: Text(
-              'View PDF',
-              style: GoogleFonts.poppins(
+              'viewPDF'.tr(),
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -871,8 +893,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                'View Certificate',
-                style: GoogleFonts.poppins(
+                'viewCertificate'.tr(),
+                style: const TextStyle(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -887,7 +909,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
           children: [
             Text(
               certificate['title'],
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -895,16 +917,16 @@ class _CertificatesSectionState extends State<CertificatesSection>
             ),
             const SizedBox(height: 8),
             Text(
-              'Issued by ${certificate['issuer']} • ${certificate['date']}',
-              style: GoogleFonts.poppins(
+              '${"issuedBy".tr()} ${certificate['issuer']} • ${certificate['date']}',
+              style: const TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 14,
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              'Choose how you want to view this certificate:',
-              style: GoogleFonts.poppins(
+              'theWayYouWantToSeeTheCertificate'.tr(),
+              style: const TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 14,
               ),
@@ -914,8 +936,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
             // Option 2: Open in Browser
             _buildViewOption(
               icon: Icons.open_in_new,
-              title: 'Open in Browser',
-              subtitle: 'Open PDF in a new browser tab',
+              title: 'openInTheBrowser'.tr(),
+              subtitle: 'openInTheBrowserSubtitle'.tr(),
               color: AppColors.primary,
               onTap: () {
                 Navigator.of(context).pop();
@@ -927,8 +949,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
             // Option 3: Download
             _buildViewOption(
               icon: Icons.download,
-              title: 'Download PDF',
-              subtitle: 'Save certificate to your device',
+              title: 'downloadPDF'.tr(),
+              subtitle: 'downloadPDFSubtitle'.tr(),
               color: AppColors.success,
               onTap: () {
                 Navigator.of(context).pop();
@@ -941,8 +963,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
             child: Text(
-              'Cancel',
-              style: GoogleFonts.poppins(
+              'cancel'.tr(),
+              style: const TextStyle(
                 color: AppColors.textSecondary,
                 fontWeight: FontWeight.w600,
               ),
@@ -991,7 +1013,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
@@ -999,7 +1021,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 12,
                     ),
@@ -1023,20 +1045,20 @@ class _CertificatesSectionState extends State<CertificatesSection>
       final String pdfUrl = certificate['pdfUrl'];
       html.window.open(pdfUrl, '_blank');
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Opening certificate: ${certificate['title']}',
-            style: GoogleFonts.poppins(color: Colors.white),
-          ),
-          backgroundColor: AppColors.success,
-          behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(20),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(
+      //       'Opening certificate: ${certificate['title']}',
+      //       style: const TextStyle(color: Colors.white),
+      //     ),
+      //     backgroundColor: AppColors.success,
+      //     behavior: SnackBarBehavior.floating,
+      //     margin: const EdgeInsets.all(20),
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //   ),
+      // );
     } catch (e) {
       _showPdfErrorDialog(certificate);
     }
@@ -1051,17 +1073,17 @@ class _CertificatesSectionState extends State<CertificatesSection>
           borderRadius: BorderRadius.circular(15),
           side: BorderSide(color: AppColors.primary.withOpacity(0.2)),
         ),
-        title: Row(
+        title: const Row(
           children: [
-            const Icon(
+            Icon(
               Icons.warning_amber_rounded,
               color: AppColors.warning,
               size: 24,
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: 10),
             Text(
               'Certificate Access',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -1075,16 +1097,16 @@ class _CertificatesSectionState extends State<CertificatesSection>
           children: [
             Text(
               'Certificate: ${certificate['title']}',
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
             ),
             const SizedBox(height: 15),
-            Text(
+            const Text(
               'Unable to open PDF directly. You can:',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 14,
               ),
@@ -1118,7 +1140,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
                   Expanded(
                     child: Text(
                       'PDF Path: ${certificate['pdfUrl']}',
-                      style: GoogleFonts.poppins(
+                      style: const TextStyle(
                         color: AppColors.primary,
                         fontSize: 12,
                       ),
@@ -1132,9 +1154,9 @@ class _CertificatesSectionState extends State<CertificatesSection>
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(
+            child: const Text(
               'Close',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 color: AppColors.textSecondary,
                 fontWeight: FontWeight.w600,
               ),
@@ -1165,7 +1187,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
             const SizedBox(width: 12),
             Text(
               text,
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -1195,7 +1217,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
         SnackBar(
           content: Text(
             'Downloading: $fileName',
-            style: GoogleFonts.poppins(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
@@ -1209,9 +1231,9 @@ class _CertificatesSectionState extends State<CertificatesSection>
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: const Text(
             'Failed to download certificate',
-            style: GoogleFonts.poppins(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColors.error,
           behavior: SnackBarBehavior.floating,

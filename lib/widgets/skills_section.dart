@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants/colors.dart';
@@ -24,56 +24,56 @@ class _SkillsSectionState extends State<SkillsSection>
       'level': 90,
       'icon': FontAwesomeIcons.dartLang,
       'color': AppColors.primary,
-      'experience': '2+ years',
+      'experience': 'dartExperience'.tr(),
     },
     {
       'name': 'JavaScript',
       'level': 65,
       'icon': FontAwesomeIcons.js,
       'color': const Color(0xFFF7DF1E),
-      'experience': '1+ years',
+      'experience': 'jsExperience'.tr(),
     },
     {
       'name': 'Python',
       'level': 65,
       'icon': FontAwesomeIcons.python,
       'color': const Color(0xFF3776AB),
-      'experience': '1+ years',
+      'experience': 'pythonExperience'.tr(),
     },
     {
       'name': 'C++',
       'level': 70,
       'icon': FontAwesomeIcons.code,
       'color': const Color(0xFF00599C),
-      'experience': '2+ years',
+      'experience': 'cppExperience'.tr(),
     },
     {
       'name': 'C#',
       'level': 80,
       'icon': FontAwesomeIcons.desktop,
       'color': const Color(0xFF239120),
-      'experience': '1+ years',
+      'experience': 'csharpExperience'.tr(),
     },
     {
       'name': 'PHP',
       'level': 70,
       'icon': FontAwesomeIcons.php,
       'color': const Color(0xFF8993BE),
-      'experience': '1+ years',
+      'experience': 'phpExperience'.tr(),
     },
     {
       'name': 'Kotlin',
       'level': 50,
       'icon': FontAwesomeIcons.android,
       'color': const Color(0xFF7F52FF),
-      'experience': 'Less than 1 year',
+      'experience': 'kotlinExperience'.tr(),
     },
     {
       'name': 'SQL',
       'level': 80,
       'icon': FontAwesomeIcons.database,
       'color': AppColors.secondary,
-      'experience': '3+ years',
+      'experience': 'sqlExperience'.tr(),
     },
   ];
 
@@ -83,28 +83,28 @@ class _SkillsSectionState extends State<SkillsSection>
       'level': 90,
       'icon': FontAwesomeIcons.flutter,
       'color': const Color(0xFF02569B),
-      'description': 'Cross-platform mobile & web development',
+      'description': 'flutterDescription'.tr(),
     },
     {
       'name': 'Laravel',
       'level': 80,
       'icon': FontAwesomeIcons.laravel,
       'color': const Color(0xFFFF2D20),
-      'description': 'Powerful backend framework for RESTful APIs',
+      'description': 'laravelDescription'.tr(),
     },
     {
       'name': 'Firebase',
       'level': 80,
       'icon': FontAwesomeIcons.fire,
       'color': const Color(0xFFFFCA28),
-      'description': 'Real-time database & authentication',
+      'description': 'firebaseDescription'.tr(),
     },
     {
       'name': 'Supabase',
       'level': 85,
       'icon': FontAwesomeIcons.database,
       'color': const Color(0xFF3ECF8E),
-      'description': 'Open-source Firebase alternative',
+      'description': 'supabaseDescription'.tr(),
     },
   ];
 
@@ -232,8 +232,8 @@ class _SkillsSectionState extends State<SkillsSection>
       child: Column(
         children: [
           Text(
-            'Skills & Technologies',
-            style: GoogleFonts.poppins(
+            'skillsTitle'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 32 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -250,8 +250,8 @@ class _SkillsSectionState extends State<SkillsSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'Technologies I work with and my proficiency levels',
-            style: GoogleFonts.poppins(
+            'skillsSubtitle'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textSecondary,
             ),
@@ -271,8 +271,8 @@ class _SkillsSectionState extends State<SkillsSection>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Programming Languages',
-              style: GoogleFonts.poppins(
+              'programmingLanguages'.tr(),
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
@@ -382,7 +382,7 @@ class _SkillsSectionState extends State<SkillsSection>
                   const SizedBox(height: 15),
                   Text(
                     language['name'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimary,
@@ -391,7 +391,7 @@ class _SkillsSectionState extends State<SkillsSection>
                   const SizedBox(height: 10),
                   Text(
                     language['experience'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.textTertiary,
                     ),
@@ -414,15 +414,15 @@ class _SkillsSectionState extends State<SkillsSection>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Proficiency',
-              style: GoogleFonts.poppins(
+              'proficiency'.tr(),
+              style: const TextStyle(
                 fontSize: 12,
                 color: AppColors.textSecondary,
               ),
             ),
             Text(
               '$level%',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: color,
@@ -455,8 +455,8 @@ class _SkillsSectionState extends State<SkillsSection>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Frameworks & Technologies',
-              style: GoogleFonts.poppins(
+              'frameworksTechnologies'.tr(),
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
@@ -534,7 +534,7 @@ class _SkillsSectionState extends State<SkillsSection>
               children: [
                 Text(
                   framework['name'],
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: AppColors.textPrimary,
@@ -543,7 +543,7 @@ class _SkillsSectionState extends State<SkillsSection>
                 const SizedBox(height: 5),
                 Text(
                   framework['description'],
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.textSecondary,
                   ),
@@ -567,8 +567,8 @@ class _SkillsSectionState extends State<SkillsSection>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Tools & Databases',
-              style: GoogleFonts.poppins(
+              'toolsDatabases'.tr(),
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
@@ -612,7 +612,7 @@ class _SkillsSectionState extends State<SkillsSection>
                 const SizedBox(width: 10),
                 Text(
                   tool['name'],
-                  style: GoogleFonts.poppins(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,

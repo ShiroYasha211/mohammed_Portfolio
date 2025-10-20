@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,35 +31,35 @@ class _ContactSectionState extends State<ContactSection>
   final List<Map<String, dynamic>> _contactInfo = [
     {
       'icon': FontAwesomeIcons.envelope,
-      'title': 'Email',
+      'title': 'email'.tr(),
       'value': 'samehing211@gmail.com',
       'url': 'mailto:samehing211@gmail.com',
       'color': AppColors.email,
     },
     {
       'icon': FontAwesomeIcons.phone,
-      'title': 'Phone',
+      'title': 'phone'.tr(),
       'value': '+967773468708',
       'url': 'tel:+967773468708',
       'color': AppColors.success,
     },
     {
       'icon': FontAwesomeIcons.whatsapp,
-      'title': 'WhatsApp',
+      'title': 'whatsapp'.tr(),
       'value': '+967773468708',
       'url': 'https://wa.me/967773468708',
       'color': AppColors.whatsapp,
     },
     {
       'icon': FontAwesomeIcons.linkedin,
-      'title': 'LinkedIn',
+      'title': 'linkedin'.tr(),
       'value': 'Mohammed Alhemyari',
       'url': 'https://www.linkedin.com/in/mohammed-alhemyari-bb0352248/',
       'color': AppColors.linkedin,
     },
     {
       'icon': FontAwesomeIcons.github,
-      'title': 'GitHub',
+      'title': 'github'.tr(),
       'value': 'ShiroYasha211',
       'url': 'https://github.com/ShiroYasha211',
       'color': AppColors.github,
@@ -150,8 +150,8 @@ class _ContactSectionState extends State<ContactSection>
       child: Column(
         children: [
           Text(
-            'Get In Touch',
-            style: GoogleFonts.poppins(
+            'contactTitle'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 32 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -168,8 +168,8 @@ class _ContactSectionState extends State<ContactSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'Let\'s discuss your project or just say hello!',
-            style: GoogleFonts.poppins(
+            'contactSubtitle'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textSecondary,
             ),
@@ -240,8 +240,8 @@ class _ContactSectionState extends State<ContactSection>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Contact Information',
-            style: GoogleFonts.poppins(
+            'contactInformation'.tr(),
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -249,8 +249,8 @@ class _ContactSectionState extends State<ContactSection>
           ),
           const SizedBox(height: 10),
           Text(
-            'Feel free to reach out through any of these channels',
-            style: GoogleFonts.poppins(
+            'contactDescription'.tr(),
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textSecondary,
               height: 1.5,
@@ -301,7 +301,7 @@ class _ContactSectionState extends State<ContactSection>
                   children: [
                     Text(
                       info['title'],
-                      style: GoogleFonts.poppins(
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -310,7 +310,7 @@ class _ContactSectionState extends State<ContactSection>
                     const SizedBox(height: 5),
                     Text(
                       info['value'],
-                      style: GoogleFonts.poppins(
+                      style: const TextStyle(
                         fontSize: 13,
                         color: AppColors.textSecondary,
                       ),
@@ -350,8 +350,8 @@ class _ContactSectionState extends State<ContactSection>
               ),
               const SizedBox(width: 10),
               Text(
-                'Availability',
-                style: GoogleFonts.poppins(
+                'availability'.tr(),
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -360,10 +360,10 @@ class _ContactSectionState extends State<ContactSection>
             ],
           ),
           const SizedBox(height: 15),
-          _buildAvailabilityRow('Status:', 'Available for freelance work'),
-          _buildAvailabilityRow('Response Time:', 'Within 24 hours'),
-          _buildAvailabilityRow('Time Zone:', 'GMT+3 (Yemen)'),
-          _buildAvailabilityRow('Languages:', 'Arabic, English'),
+          _buildAvailabilityRow('status'.tr(), 'availabilityStatus'.tr()),
+          _buildAvailabilityRow('responseTimeStatus'.tr(), 'responseTime'.tr()),
+          _buildAvailabilityRow('timeZoneStatus'.tr(), 'timeZone'.tr()),
+          _buildAvailabilityRow('languagesStatus'.tr(), 'languages'.tr()),
         ],
       ),
     );
@@ -379,7 +379,7 @@ class _ContactSectionState extends State<ContactSection>
             width: 100,
             child: Text(
               label,
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primary,
@@ -389,7 +389,7 @@ class _ContactSectionState extends State<ContactSection>
           Expanded(
             child: Text(
               value,
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 fontSize: 13,
                 color: AppColors.textSecondary,
               ),
@@ -423,8 +423,8 @@ class _ContactSectionState extends State<ContactSection>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Send Message',
-              style: GoogleFonts.poppins(
+              'sendMessageButton'.tr(),
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
@@ -432,8 +432,8 @@ class _ContactSectionState extends State<ContactSection>
             ),
             const SizedBox(height: 10),
             Text(
-              'Have a project in mind? Let\'s discuss it!',
-              style: GoogleFonts.poppins(
+              'sendMessageDescription'.tr(),
+              style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.textSecondary,
               ),
@@ -442,19 +442,19 @@ class _ContactSectionState extends State<ContactSection>
             Row(
               children: [
                 Expanded(
-                    child:
-                        _buildTextField('Name', _nameController, Icons.person)),
+                    child: _buildTextField(
+                        'name'.tr(), _nameController, Icons.person)),
                 const SizedBox(width: 20),
                 Expanded(
                     child: _buildTextField(
-                        'Email', _emailController, Icons.email,
+                        'email'.tr(), _emailController, Icons.email,
                         isEmail: true)),
               ],
             ),
             const SizedBox(height: 20),
-            _buildTextField('Subject', _subjectController, Icons.subject),
+            _buildTextField('subject'.tr(), _subjectController, Icons.subject),
             const SizedBox(height: 20),
-            _buildTextField('Message', _messageController, Icons.message,
+            _buildTextField('message'.tr(), _messageController, Icons.message,
                 isMultiline: true),
             const SizedBox(height: 30),
             _buildSubmitButton(),
@@ -472,7 +472,7 @@ class _ContactSectionState extends State<ContactSection>
       children: [
         Text(
           label,
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -482,12 +482,12 @@ class _ContactSectionState extends State<ContactSection>
         TextFormField(
           controller: controller,
           maxLines: isMultiline ? 5 : 1,
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             color: AppColors.textPrimary,
           ),
           decoration: InputDecoration(
-            hintText: 'Enter your $label',
-            hintStyle: GoogleFonts.poppins(
+            hintText: '${"enterYour".tr()} $label',
+            hintStyle: const TextStyle(
               color: AppColors.textTertiary,
             ),
             prefixIcon: Icon(icon, color: AppColors.primary),
@@ -520,11 +520,11 @@ class _ContactSectionState extends State<ContactSection>
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return '$label is required';
+              return '$label ${"isRequired".tr()}';
             }
             if (isEmail &&
                 !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-              return 'Please enter a valid email';
+              return 'validEmail'.tr();
             }
             return null;
           },
@@ -549,8 +549,8 @@ class _ContactSectionState extends State<ContactSection>
               )
             : const Icon(Icons.send),
         label: Text(
-          _isSubmitting ? 'Sending...' : 'Send Message',
-          style: GoogleFonts.poppins(
+          _isSubmitting ? 'sending'.tr() : 'sendMessageButton'.tr(),
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -582,18 +582,18 @@ class _ContactSectionState extends State<ContactSection>
         ),
         child: Column(
           children: [
-            Text(
+            const Text(
               'Mohammed Alhemyari',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 10),
-            Text(
+            const Text(
               'Flutter Developer | Mobile & Web Developer',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 16,
                 color: AppColors.primary,
                 fontWeight: FontWeight.w600,
@@ -601,8 +601,8 @@ class _ContactSectionState extends State<ContactSection>
             ),
             const SizedBox(height: 20),
             Text(
-              '© 2025 Mohammed Alhemyari. All rights reserved.',
-              style: GoogleFonts.poppins(
+              'copyRight'.tr(),
+              style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.textTertiary,
               ),
@@ -613,15 +613,8 @@ class _ContactSectionState extends State<ContactSection>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Built',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                Text(
-                  ' using Flutter',
-                  style: GoogleFonts.poppins(
+                  'builtWith'.tr(),
+                  style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.textSecondary,
                   ),
@@ -686,7 +679,7 @@ class _ContactSectionState extends State<ContactSection>
             Expanded(
               child: Text(
                 message,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
@@ -715,7 +708,7 @@ class _ContactSectionState extends State<ContactSection>
             Expanded(
               child: Text(
                 message,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),

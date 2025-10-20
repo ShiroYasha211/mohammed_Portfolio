@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,140 +21,133 @@ class _ProjectsSectionState extends State<ProjectsSection>
 
   final List<Map<String, dynamic>> _projects = [
     {
-      'title': 'Foodly Delivery App',
-      'description':
-          'Modern food delivery app built with Flutter, offering an exceptional user experience for ordering your favorite meals.',
+      'title': 'foodly_title'.tr(),
+      'description': 'foodly_description'.tr(),
       'technologies': ['Flutter', 'Dart', 'Supabase'],
       'githubUrl': 'https://github.com/ShiroYasha211/Foodly_delivery',
-      'category': 'Mobile App',
-      'status': 'Completed',
+      'category': 'mobileApp'.tr(),
+      'status': 'completed'.tr(),
       'features': [
-        'Smart Shopping Cart ',
-        'Menu Management',
-        'Cart Functionality',
-        'User Profiles',
-        'Real-time Price Calculation',
-        ' Persistent Cart Data',
-        'Order Invoice Generation ',
-        'Order History',
-        'Reorder Functionality ',
+        'smart_cart'.tr(),
+        'menu_management'.tr(),
+        'cart_functionality'.tr(),
+        'user_profiles'.tr(),
+        'real_time_calculation'.tr(),
+        'persistent_cart'.tr(),
+        'invoice_generation'.tr(),
+        'order_history'.tr(),
+        'reorder_functionality'.tr(),
       ],
     },
     {
-      'title': 'Lino App',
-      'description':
-          'Chat app with real-time messaging, user profiles, and media sharing, built using Flutter for seamless communication.',
+      'title': 'lino_title'.tr(),
+      'description': 'lino_description'.tr(),
       'technologies': ['Flutter', 'Dart', 'Supabase'],
       'githubUrl': 'https://github.com/ShiroYasha211/Lino',
-      'category': 'Mobile App',
-      'status': 'In Progress',
+      'category': 'mobileApp'.tr(),
+      'status': 'inProgress'.tr(),
       'features': [
-        'Real-time Messaging',
-        'User Profiles',
-        'Media Sharing',
-        'Push Notifications',
-        'Group Chats',
-        'Search Functionality',
-        'Typing Indicators',
-        'Read Receipts',
-        'Message Reactions',
+        'real_time_messaging'.tr(),
+        'user_profiles'.tr(),
+        'media_sharing'.tr(),
+        'push_notifications'.tr(),
+        'group_chats'.tr(),
+        'search_functionality'.tr(),
+        'typing_indicators'.tr(),
+        'read_receipts'.tr(),
+        'message_reactions'.tr(),
       ],
     },
     {
-      'title': 'Forum App',
-      'description':
-          'A comprehensive forum application that allows users to create accounts, write posts, and interact through comments. Built with Flutter for the frontend and Laravel for the backend.',
+      'title': 'forum_title'.tr(),
+      'description': 'forum_description'.tr(),
       'technologies': ['Flutter', 'Laravel', 'MySQL', 'API Integration'],
       'githubUrl': 'https://github.com/ShiroYasha211/Fourm_Frontend',
-      'category': 'Mobile App',
-      'status': 'Completed',
+      'category': 'mobileApp'.tr(),
+      'status': 'completed'.tr(),
       'features': [
-        'User Registration & Authentication',
-        'Post Creation & Management',
-        'Comment System',
-        'User Profiles',
-        'Real-time Updates',
+        'user_registration'.tr(),
+        'post_creation'.tr(),
+        'comment_system'.tr(),
+        'user_profiles'.tr(),
+        'real_time_updates'.tr(),
       ],
     },
     {
-      'title': 'Forum App Backend',
-      'description':
-          'A comprehensive forum application backend that allows users to create accounts, write posts, and interact through comments. Built with Laravel and MySQL.',
+      'title': 'forum_backend_title'.tr(),
+      'description': 'forum_backend_description'.tr(),
       'technologies': ['Laravel', 'MySQL', 'Php', 'API Integration'],
       'githubUrl': 'https://github.com/ShiroYasha211/Fourm_Backend',
-      'category': 'Backend',
-      'status': 'Completed',
+      'category': 'backend'.tr(),
+      'status': 'completed'.tr(),
       'features': [
-        'User Registration & Authentication',
-        'Post Creation & Management',
-        'Comment System',
-        'User Profiles',
-        'Real-time Updates',
+        'user_registration'.tr(),
+        'post_creation'.tr(),
+        'comment_system'.tr(),
+        'user_profiles'.tr(),
+        'real_time_updates'.tr(),
       ],
     },
     {
-      'title': 'Shoply Admin Dashboard',
-      'description':
-          'A modern, responsive e-commerce admin dashboard built with Flutter Web and connected to Supabase backend. This dashboard provides comprehensive management tools for products, users, orders, and analytics.',
+      'title': 'shoply_admin_title'.tr(),
+      'description': 'shoply_admin_description'.tr(),
       'technologies': [
         'Flutter Web',
         'Supabase',
         'Charts',
-        'Responsive Design',
+        'Responsive Design'
       ],
       'githubUrl': 'https://github.com/ShiroYasha211/Shoply_Admin_Dashboard',
-      'category': 'Web App',
-      'status': 'In Progress',
+      'category': 'webApp'.tr(),
+      'status': 'inProgress'.tr(),
       'features': [
-        'Product Management',
-        'Order Management',
-        'Analytics Dashboard',
-        'User Management',
-        'Responsive Design',
+        'product_management'.tr(),
+        'order_management'.tr(),
+        'analytics_dashboard'.tr(),
+        'user_management'.tr(),
+        'responsive_design'.tr(),
       ],
     },
     {
-      'title': 'Shoply App',
-      'description':
-          'A modern, responsive e-commerce app built with Flutter and connected to Supabase backend. This app provides a user-friendly interface for shopping and managing products.',
-      'technologies': [
-        'Flutter',
-        'Supabase',
-        'Responsive Design',
-      ],
+      'title': 'shoply_title'.tr(),
+      'description': 'shoply_description'.tr(),
+      'technologies': ['Flutter', 'Supabase', 'Responsive Design'],
       'githubUrl': 'https://github.com/ShiroYasha211/Shoply',
-      'category': 'App',
-      'status': 'In Progress',
+      'category': 'mobileApp'.tr(),
+      'status': 'inProgress'.tr(),
       'features': [
-        'Product Browsing',
-        'Shopping Cart',
-        'User Profiles',
-        'Order History',
-        'Responsive Design',
-        'Real-time Updates',
+        'product_browsing'.tr(),
+        'shopping_cart'.tr(),
+        'user_profiles'.tr(),
+        'order_history'.tr(),
+        'responsive_design'.tr(),
+        'real_time_updates'.tr(),
       ],
     },
     {
-      'title': 'Portfolio Website',
-      'description':
-          'This personal portfolio website built with Flutter Web, featuring modern design, smooth animations, and responsive layout across all devices.',
+      'title': 'portfolio_title'.tr(),
+      'description': 'portfolio_description'.tr(),
       'technologies': ['Flutter Web', 'Responsive Design', 'Animations'],
-      'githubUrl':
-          'https://github.com/ShiroYasha211/mohammed_Portfolio', // TODO: Add actual URL
-      'category': 'Web App',
-      'status': 'Completed',
+      'githubUrl': 'https://github.com/ShiroYasha211/mohammed_Portfolio',
+      'category': 'webApp'.tr(),
+      'status': 'completed'.tr(),
       'features': [
-        'Modern UI Design',
-        'Smooth Animations',
-        'Responsive Layout',
-        'Contact Integration',
-        'SEO Optimized',
+        'modern_ui'.tr(),
+        'smooth_animations'.tr(),
+        'responsive_layout'.tr(),
+        'contact_integration'.tr(),
+        'seo_optimized'.tr(),
       ],
     },
   ];
 
-  String _selectedCategory = 'All';
-  final List<String> _categories = ['All', 'Mobile App', 'Web App', 'Backend'];
+  String _selectedCategory = 'all'.tr();
+  final List<String> _categories = [
+    'all'.tr(),
+    'mobileApp'.tr(),
+    'webApp'.tr(),
+    'backend'.tr()
+  ];
 
   @override
   void initState() {
@@ -195,7 +188,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
   }
 
   List<Map<String, dynamic>> get _filteredProjects {
-    if (_selectedCategory == 'All') {
+    if (_selectedCategory == 'all'.tr()) {
       return _projects;
     }
     return _projects
@@ -245,8 +238,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
       child: Column(
         children: [
           Text(
-            'Featured Projects',
-            style: GoogleFonts.poppins(
+            'projectsTitle'.tr(),
+            style: TextStyle(
               fontSize: MediaQuery.of(context).size.width < 768 ? 32 : 48,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
@@ -263,8 +256,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
           ),
           const SizedBox(height: 20),
           Text(
-            'A showcase of my recent work and personal projects',
-            style: GoogleFonts.poppins(
+            'projectsSubtitle'.tr(),
+            style: const TextStyle(
               fontSize: 16,
               color: AppColors.textSecondary,
             ),
@@ -314,7 +307,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     ),
                     child: Text(
                       category,
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color:
@@ -372,9 +365,9 @@ class _ProjectsSectionState extends State<ProjectsSection>
           child: Opacity(
             opacity: curvedValue,
             child: Container(
-              width: double.infinity, // مهم للموبايل
+              width: double.infinity,
               constraints: const BoxConstraints(
-                minHeight: 200, // ارتفاع أدنى
+                minHeight: 200,
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -460,9 +453,9 @@ class _ProjectsSectionState extends State<ProjectsSection>
             border: Border.all(color: AppColors.primary.withOpacity(0.2)),
           ),
           child: Icon(
-            project['category'] == 'Mobile App'
+            project['category'] == 'mobileApp'.tr()
                 ? Icons.phone_iphone
-                : project['category'] == 'Web App'
+                : project['category'] == 'webApp'.tr()
                     ? Icons.web
                     : Icons.code,
             color: AppColors.primary,
@@ -471,7 +464,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
         ),
         Text(
           project['title'],
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: AppColors.textPrimary,
@@ -490,7 +483,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
           ),
           child: Text(
             project['category'],
-            style: GoogleFonts.poppins(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               color: AppColors.primary,
@@ -504,7 +497,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
   Widget _buildMobileProjectDescription(Map<String, dynamic> project) {
     return Text(
       project['description'],
-      style: GoogleFonts.poppins(
+      style: const TextStyle(
         fontSize: 14,
         color: AppColors.textSecondary,
         height: 1.5,
@@ -520,8 +513,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Technologies:',
-          style: GoogleFonts.poppins(
+          'technologies'.tr(),
+          style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -542,7 +535,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
               ),
               child: Text(
                 tech,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textSecondary,
@@ -568,7 +561,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     Expanded(
                       child: _buildMobileActionButton(
                         icon: FontAwesomeIcons.github,
-                        label: 'Source Code',
+                        label: 'sourceCode'.tr(),
                         color: AppColors.github,
                         onTap: () => _launchUrl(project['githubUrl']),
                       ),
@@ -580,7 +573,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     Expanded(
                       child: _buildMobileActionButton(
                         icon: Icons.launch,
-                        label: 'Live Demo',
+                        label: 'liveDemo'.tr(),
                         color: AppColors.primary,
                         onTap: () => _launchUrl(project['demoUrl']),
                       ),
@@ -622,7 +615,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
             const SizedBox(width: 6),
             Text(
               label,
-              style: GoogleFonts.poppins(
+              style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: color,
@@ -655,8 +648,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'View Project Details',
-              style: GoogleFonts.poppins(
+              'viewDetails'.tr(),
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
@@ -811,7 +804,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
           const SizedBox(width: 8),
           Text(
             status,
-            style: GoogleFonts.poppins(
+            style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -837,9 +830,9 @@ class _ProjectsSectionState extends State<ProjectsSection>
             border: Border.all(color: AppColors.primary.withOpacity(0.2)),
           ),
           child: Icon(
-            project['category'] == 'Mobile App'
+            project['category'] == 'mobileApp'.tr()
                 ? Icons.phone_iphone
-                : project['category'] == 'Web App'
+                : project['category'] == 'webApp'.tr()
                     ? Icons.web
                     : Icons.code,
             color: AppColors.primary,
@@ -855,7 +848,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                 children: [
                   Text(
                     project['title'],
-                    style: GoogleFonts.poppins(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimary,
@@ -876,7 +869,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     ),
                     child: Text(
                       project['category'],
-                      style: GoogleFonts.poppins(
+                      style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: AppColors.primary,
@@ -899,7 +892,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
       children: [
         Text(
           project['description'],
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontSize: 13,
             color: AppColors.textSecondary,
             height: 1.5,
@@ -918,8 +911,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Technologies Used:',
-          style: GoogleFonts.poppins(
+          'technologies'.tr(),
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -947,7 +940,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
               ),
               child: Text(
                 tech,
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textSecondary,
@@ -961,7 +954,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               '+ ${technologies.length - 5} more',
-              style: GoogleFonts.poppins(
+              style: const TextStyle(
                 fontSize: 11,
                 color: AppColors.textTertiary,
                 fontStyle: FontStyle.italic,
@@ -985,7 +978,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
           if (project['githubUrl'] != null)
             _buildActionButton(
               icon: FontAwesomeIcons.github,
-              label: 'Source Code',
+              label: 'sourceCode'.tr(),
               color: AppColors.github,
               onTap: () => _launchUrl(project['githubUrl']),
             ),
@@ -994,7 +987,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
           if (project['demoUrl'] != null)
             _buildActionButton(
               icon: Icons.launch,
-              label: 'Live Demo',
+              label: 'liveDemo'.tr(),
               color: AppColors.primary,
               onTap: () => _launchUrl(project['demoUrl']),
             ),
@@ -1019,8 +1012,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'View Details',
-                    style: GoogleFonts.poppins(
+                    'viewDetails'.tr(),
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -1066,7 +1059,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
               const SizedBox(width: 8),
               Text(
                 label,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: color,
@@ -1123,7 +1116,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                   Expanded(
                     child: Text(
                       project['title'],
-                      style: GoogleFonts.poppins(
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: AppColors.textPrimary,
@@ -1139,8 +1132,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
               ),
               const SizedBox(height: 20),
               Text(
-                'Project Features:',
-                style: GoogleFonts.poppins(
+                'features'.tr(),
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -1161,7 +1154,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                       Expanded(
                         child: Text(
                           feature,
-                          style: GoogleFonts.poppins(
+                          style: const TextStyle(
                             fontSize: 14,
                             color: AppColors.textSecondary,
                           ),
@@ -1174,7 +1167,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
               const SizedBox(height: 20),
               Text(
                 project['description'],
-                style: GoogleFonts.poppins(
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.textSecondary,
                   height: 1.5,
