@@ -123,7 +123,10 @@ class _PortfolioHomeState extends State<PortfolioHome> {
               sectionKeys: _sectionKeys,
               scrollController: _scrollController,
             ),
-            HeroSection(key: _sectionKeys['home']),
+            HeroSection(
+              key: _sectionKeys['home'],
+              onContactPressed: () => scrollToSection("contact"),
+            ),
             AboutSection(key: _sectionKeys['about']),
             SkillsSection(key: _sectionKeys['skills']),
             ProjectsSection(key: _sectionKeys['projects']),

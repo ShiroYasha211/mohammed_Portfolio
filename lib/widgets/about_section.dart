@@ -262,7 +262,7 @@ class _AboutSectionState extends State<AboutSection>
   Widget _buildContactInfo() {
     return Column(
       children: [
-        _buildContactItem(Icons.email, 'samehing211@gmail.com'),
+        _buildContactItem(Icons.email, 'alhemyarimohammed211@gmail.com'),
         const SizedBox(height: 10),
         _buildContactItem(Icons.phone, '+967773468708'),
         const SizedBox(height: 10),

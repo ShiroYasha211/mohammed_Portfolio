@@ -426,7 +426,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
                     ),
                     Positioned(
                       top: 15,
-                      right: 15,
+                      right: context.locale.languageCode == 'en' ? 15 : null,
+                      left: context.locale.languageCode == 'en' ? null : 15,
                       child: _buildStatusBadge(project['status']),
                     ),
                   ],
@@ -760,8 +761,9 @@ class _ProjectsSectionState extends State<ProjectsSection>
                         ),
                       ),
                       Positioned(
-                        top: 20,
-                        right: 20,
+                        top: context.locale.languageCode == 'ar' ? 20 : 20,
+                        right: context.locale.languageCode == 'ar' ? null : 20,
+                        left: context.locale.languageCode == 'ar' ? 20 : null,
                         child: _buildStatusBadge(project['status']),
                       ),
                     ],
@@ -1073,18 +1075,30 @@ class _ProjectsSectionState extends State<ProjectsSection>
   }
 
   Color _getStatusColor(String status) {
-    switch (status) {
-      case 'Completed':
-        return AppColors.success;
-      case 'In Progress':
-        return AppColors.warning;
-      case 'Planning':
-        return AppColors.primary;
-      case 'On Hold':
-        return AppColors.error;
-      default:
-        return AppColors.secondary;
+    // Use runtime comparisons instead of switch-case with method calls to avoid
+    // "Methods can't be invoked in constant expressions" compile error.
+    if (status == 'completed'.tr() || status == 'completed') {
+      return AppColors.success;
     }
+    if (status == 'inProgress'.tr() ||
+        status == 'inProgress' ||
+        status.toLowerCase() == 'in progress' ||
+        status == 'In Progress') {
+      return AppColors.warning;
+    }
+    if (status == 'planning'.tr() ||
+        status == 'planning' ||
+        status.toLowerCase() == 'planning' ||
+        status == 'Planning') {
+      return AppColors.primary;
+    }
+    if (status == 'onHold'.tr() ||
+        status == 'onHold' ||
+        status.toLowerCase() == 'on hold' ||
+        status == 'On Hold') {
+      return AppColors.error;
+    }
+    return AppColors.secondary;
   }
 
   void _launchUrl(String url) async {

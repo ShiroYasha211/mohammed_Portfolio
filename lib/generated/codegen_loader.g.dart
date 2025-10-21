@@ -84,6 +84,8 @@ class CodegenLoader extends AssetLoader{
   "status": "الحالة",
   "completed": "مكتمل",
   "inProgress": "قيد التطوير",
+  "onHold": "متوقف مؤقتا",
+  "planning": "اخطط لانشائه",
   "foodly_title": "تطبيق Foodly للتوصيل",
   "foodly_description": "تطبيق توصيل طعام حديث مبنى باستخدام Flutter، يقدم تجربة مستخدم استثنائية لطلب وجباتك المفضلة.",
   "lino_title": "تطبيق Lino",

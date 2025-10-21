@@ -76,6 +76,8 @@
   "status": "Status",
   "completed": "Completed",
   "inProgress": "In Progress",
+  "planning": "Planning",
+  "onHold": "On Hold",
 
    "foodly_title": "Foodly Delivery App",
     "foodly_description": "Modern food delivery app built with Flutter, offering an exceptional user experience for ordering your favorite meals.",

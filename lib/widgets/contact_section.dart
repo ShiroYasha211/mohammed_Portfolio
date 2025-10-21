@@ -32,7 +32,7 @@ class _ContactSectionState extends State<ContactSection>
     {
       'icon': FontAwesomeIcons.envelope,
       'title': 'email'.tr(),
-      'value': 'samehing211@gmail.com',
+      'value': 'alhemyarimohammed211@gmail.com',
       'url': 'mailto:samehing211@gmail.com',
       'color': AppColors.email,
     },
@@ -63,6 +63,13 @@ class _ContactSectionState extends State<ContactSection>
       'value': 'ShiroYasha211',
       'url': 'https://github.com/ShiroYasha211',
       'color': AppColors.github,
+    },
+    {
+      'icon': FontAwesomeIcons.facebook,
+      'title': 'facebook'.tr(),
+      'value': 'Mohammed Alhemyari',
+      'url': 'https://www.facebook.com/profile.php?id=61582091684308',
+      'color': AppColors.linkedin,
     },
   ];
 

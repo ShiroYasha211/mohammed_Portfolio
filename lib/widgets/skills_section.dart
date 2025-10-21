@@ -139,6 +139,11 @@ class _SkillsSectionState extends State<SkillsSection>
       'icon': FontAwesomeIcons.unity,
       'color': const Color(0xFF000000),
     },
+    {
+      'name': 'Postman',
+      'icon': FontAwesomeIcons.paperPlane,
+      'color': const Color(0xFFFF6C37),
+    }
   ];
 
   @override

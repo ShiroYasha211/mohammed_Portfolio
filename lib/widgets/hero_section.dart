@@ -6,7 +6,8 @@ import '../constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class HeroSection extends StatefulWidget {
-  const HeroSection({super.key});
+  final VoidCallback onContactPressed;
+  const HeroSection({super.key, required this.onContactPressed});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
@@ -20,6 +21,7 @@ class _HeroSectionState extends State<HeroSection>
   late AnimationController _scrollIndicatorController;
   late Animation<double> _pulseAnimation;
   late Animation<double> _bounceAnimation;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -78,6 +80,7 @@ class _HeroSectionState extends State<HeroSection>
   void dispose() {
     _controller.dispose();
     _scrollIndicatorController.dispose();
+    scrollController.dispose();
 
     super.dispose();
   }
@@ -339,7 +342,7 @@ class _HeroSectionState extends State<HeroSection>
         const SizedBox(width: 20),
         OutlinedButton(
           onPressed: () {
-            // TODO: Navigate to contact section
+            widget.onContactPressed();
           },
           style: OutlinedButton.styleFrom(
             side: const BorderSide(color: AppColors.primary),
@@ -383,11 +386,19 @@ class _HeroSectionState extends State<HeroSection>
           AppColors.whatsapp,
           'https://wa.me/967773468708',
         ),
+        const SizedBox(
+          width: 15,
+        ),
+        _buildSocialIcon(
+          FontAwesomeIcons.facebook,
+          AppColors.linkedin,
+          "https://www.facebook.com/profile.php?id=61582091684308",
+        ),
         const SizedBox(width: 15),
         _buildSocialIcon(
           FontAwesomeIcons.envelope,
           AppColors.email,
-          'mailto:samehing211@gmail.com',
+          'mailto:alhemyarimohammed211@gmail.com',
         ),
       ],
     );
