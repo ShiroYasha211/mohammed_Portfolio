@@ -697,77 +697,74 @@ class _ProjectsSectionState extends State<ProjectsSection>
           offset: Offset(0, (1 - curvedValue) * 20),
           child: Opacity(
             opacity: curvedValue,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppColors.cardGradient.colors.first.withOpacity(0.9),
-                      AppColors.cardGradient.colors.last.withOpacity(0.9),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: AppColors.primary.withOpacity(0.15),
-                    width: 1.5,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withOpacity(0.08),
-                      blurRadius: 25,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 8),
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                      spreadRadius: -5,
-                      offset: const Offset(0, 4),
-                    ),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.cardGradient.colors.first.withOpacity(0.9),
+                    AppColors.cardGradient.colors.last.withOpacity(0.9),
                   ],
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: -20,
-                        right: -20,
-                        child: Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.03),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(28),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildProjectHeader(project),
-                            const SizedBox(height: 20),
-                            _buildProjectDescription(project),
-                            const SizedBox(height: 20),
-                            _buildTechnologies(project),
-                            const Spacer(),
-                            _buildProjectActions(project),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: context.locale.languageCode == 'ar' ? 20 : 20,
-                        right: context.locale.languageCode == 'ar' ? null : 20,
-                        left: context.locale.languageCode == 'ar' ? 20 : null,
-                        child: _buildStatusBadge(project['status']),
-                      ),
-                    ],
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: AppColors.primary.withOpacity(0.15),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.08),
+                    blurRadius: 25,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 8),
                   ),
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    spreadRadius: -5,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: -20,
+                      right: -20,
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withOpacity(0.03),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildProjectHeader(project),
+                          const SizedBox(height: 20),
+                          _buildProjectDescription(project),
+                          const SizedBox(height: 20),
+                          _buildTechnologies(project),
+                          const Spacer(),
+                          _buildProjectActions(project),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: context.locale.languageCode == 'ar' ? 20 : 20,
+                      right: context.locale.languageCode == 'ar' ? null : 20,
+                      left: context.locale.languageCode == 'ar' ? 20 : null,
+                      child: _buildStatusBadge(project['status']),
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -21,6 +21,12 @@
   "scrollDown": "Scroll Down",
   "downloadCV": "Download CV",
   "contactMe": "Contact Me",
+  "viewCV": "View CV",
+  "choseTheLanguage": "Chose The CV Language You Want To See",
+  "english": "English",
+  "arabic": "Arabic",
+  "englishSubtitle": "Download The CV in English",
+  "arabicSubtitle": "Download The CV in Arabic",
   
   "aboutTitle": "About Me",
   "aboutSubtitle": "Get to know more about me and my journey",

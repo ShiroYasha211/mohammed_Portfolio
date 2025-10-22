@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web/web.dart' as html;
 import '../constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -314,7 +315,7 @@ class _HeroSectionState extends State<HeroSection>
       children: [
         ElevatedButton(
           onPressed: () {
-            // TODO: Download CV
+            _showViewOptionsDialog();
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
@@ -490,5 +491,211 @@ class _HeroSectionState extends State<HeroSection>
         ),
       );
     });
+  }
+
+  void _showViewOptionsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: AppColors.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: BorderSide(color: AppColors.primary.withOpacity(0.2)),
+          ),
+          title: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.picture_as_pdf,
+                  color: AppColors.primary,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  'viewCV'.tr(),
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "choseTheLanguage".tr(),
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              _buildLanguageViewOption(
+                icon: Icons.language,
+                title: 'english'.tr(),
+                subtitle: 'englishSubtitle'.tr(),
+                color: AppColors.secondary,
+                onTap: () {
+                  Navigator.pop(context);
+                  _downloadCV(isEnglish: true);
+                },
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              _buildLanguageViewOption(
+                icon: Icons.language,
+                title: 'arabic'.tr(),
+                subtitle: 'arabicSubtitle'.tr(),
+                color: AppColors.success,
+                onTap: () {
+                  Navigator.pop(context);
+                  _downloadCV(isEnglish: false);
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'cancel'.tr(),
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 14,
+                ),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildLanguageViewOption({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: color.withOpacity(0.2)),
+            color: color.withOpacity(0.05),
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(
+                  icon,
+                  color: color,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.textSecondary,
+                size: 16,
+              )
+            ],
+          ),
+        ));
+  }
+
+  void _downloadCV({
+    required bool isEnglish,
+  }) {
+    try {
+      String pdfUrl = isEnglish ? 'assets/cv/cv_en.pdf' : 'assets/cv/cv_ar.pdf';
+      String fileName = isEnglish ? 'cv_en.pdf' : 'cv_ar.pdf';
+
+      // Create download link
+      final html.HTMLAnchorElement anchor =
+          html.document.createElement('a') as html.HTMLAnchorElement;
+      anchor.href = pdfUrl;
+      anchor.download = fileName;
+      anchor.click();
+
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Downloading: $fileName',
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: AppColors.success,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    } catch (e) {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text(
+            'Failed to download CV',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.all(20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
+    }
   }
 }
