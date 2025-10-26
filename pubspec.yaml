@@ -48,6 +48,7 @@ dependencies:
   flutter_localization: ^0.3.3
   provider: ^6.1.5+1
   easy_localization: ^3.0.8
+  universal_html: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,9 @@ flutter:
     - assets/images/
     - assets/certificates/
     - assets/translations/
+    - assets/cv/
+    - assets/fonts/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

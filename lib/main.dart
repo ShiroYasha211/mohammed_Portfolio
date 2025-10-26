@@ -12,12 +12,15 @@ import 'constants/colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-    supportedLocales: const [Locale('en'), Locale('ar')],
-    path: 'assets/translations',
-    fallbackLocale: const Locale('en'),
-    child: const MyApp(),
-  ));
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: context.locale.languageCode == 'ar' ? 'Cairo' : 'Poppins',
-        platform: TargetPlatform.iOS,
+        // إزالة platform لإصلاح مشاكل التخطيط
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: AppColors.background,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -62,15 +65,19 @@ class _PortfolioHomeState extends State<PortfolioHome> {
     'contact': GlobalKey(),
   };
   bool _showFAB = false;
+
   void scrollToSection(String section) {
     final key = _sectionKeys[section];
     if (key != null && key.currentContext != null) {
-      Scrollable.ensureVisible(
-        key.currentContext!,
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeInOut,
-        alignment: 0.1,
-      );
+      // تحسين التمرير وإضافة تأخير بسيط
+      Future.delayed(const Duration(milliseconds: 100), () {
+        Scrollable.ensureVisible(
+          key.currentContext!,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOut,
+          alignment: 0.05, // تقليل alignment
+        );
+      });
     }
   }
 
@@ -99,7 +106,10 @@ class _PortfolioHomeState extends State<PortfolioHome> {
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_handleScroll);
+    // إضافة listener بعد تأخير بسيط
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.addListener(_handleScroll);
+    });
   }
 
   @override
@@ -123,15 +133,22 @@ class _PortfolioHomeState extends State<PortfolioHome> {
               sectionKeys: _sectionKeys,
               scrollController: _scrollController,
             ),
-            HeroSection(
-              key: _sectionKeys['home'],
-              onContactPressed: () => scrollToSection("contact"),
+            SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  HeroSection(
+                    key: _sectionKeys['home'],
+                    onContactPressed: () => scrollToSection("contact"),
+                  ),
+                  AboutSection(key: _sectionKeys['about']),
+                  SkillsSection(key: _sectionKeys['skills']),
+                  ProjectsSection(key: _sectionKeys['projects']),
+                  CertificatesSection(key: _sectionKeys['certificates']),
+                  ContactSection(key: _sectionKeys['contact']),
+                ],
+              ),
             ),
-            AboutSection(key: _sectionKeys['about']),
-            SkillsSection(key: _sectionKeys['skills']),
-            ProjectsSection(key: _sectionKeys['projects']),
-            CertificatesSection(key: _sectionKeys['certificates']),
-            ContactSection(key: _sectionKeys['contact']),
           ],
         ),
       ),

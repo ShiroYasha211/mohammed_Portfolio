@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:web/web.dart' as html;
+// import 'package:web/web.dart' as html;
+import 'package:universal_html/html.dart' as html;
 import '../constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -655,15 +656,16 @@ class _HeroSectionState extends State<HeroSection>
     required bool isEnglish,
   }) {
     try {
-      String pdfUrl = isEnglish ? 'assets/cv/cv_en.pdf' : 'assets/cv/cv_ar.pdf';
       String fileName = isEnglish ? 'cv_en.pdf' : 'cv_ar.pdf';
+      String pdfUrl = isEnglish ? 'assets/cv/cv_en.pdf' : 'assets/cv/cv_ar.pdf';
 
       // Create download link
-      final html.HTMLAnchorElement anchor =
-          html.document.createElement('a') as html.HTMLAnchorElement;
-      anchor.href = pdfUrl;
-      anchor.download = fileName;
-      anchor.click();
+      html.window.open(pdfUrl, '_blank');
+      // final html.HTMLAnchorElement anchor =
+      //     html.document.createElement('a') as html.HTMLAnchorElement;
+      // anchor.href = pdfUrl;
+      // anchor.download = fileName;
+      // anchor.click();
 
       // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
