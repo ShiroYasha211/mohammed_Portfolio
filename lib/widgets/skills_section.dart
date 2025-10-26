@@ -169,20 +169,6 @@ class _SkillsSectionState extends State<SkillsSection>
       parent: _animationController,
       curve: const Interval(0.2, 1.0, curve: Curves.easeOutBack),
     ));
-
-    // Fallback: some platforms (or release/web builds when hosted) may
-    // not reliably report visibility via VisibilityDetector. To avoid the
-    // whole section staying invisible (FadeTransition starts at 0.0 and
-    // waits for VisibilityDetector), schedule a short fallback that
-    // starts the animation if visibility was not detected within a
-    // reasonable timeframe.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(milliseconds: 300), () {
-        if (mounted && !_isVisible) {
-          _startAnimation();
-        }
-      });
-    });
   }
 
   @override
@@ -207,7 +193,8 @@ class _SkillsSectionState extends State<SkillsSection>
     return VisibilityDetector(
       key: const Key('skills-section'),
       onVisibilityChanged: (info) {
-        if (info.visibleFraction > 0.3) {
+        debugPrint('Visible fraction: ${info.visibleFraction}');
+        if (info.visibleFraction > 0.25) {
           _startAnimation();
         }
       },

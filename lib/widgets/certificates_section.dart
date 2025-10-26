@@ -25,7 +25,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'computer_essentials_description'.tr(),
-      'pdfUrl': 'assets/certificates/computer_essentials.pdf',
+      'pdfUrl': 'assets/assets/certificates/computer_essentials.pdf',
       'category': 'programming'.tr(),
       'skills': [
         'computer_basics'.tr(),
@@ -38,7 +38,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'interaction_design_description'.tr(),
-      'pdfUrl': 'assets/certificates/Interaction Design Fundamentals.pdf',
+      'pdfUrl':
+          'assets/assets/certificates/Interaction Design Fundamentals.pdf',
       'category': 'design'.tr(),
       'skills': [
         'ux_design'.tr(),
@@ -51,7 +52,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'different_academy'.tr(),
       'date': '2022',
       'description': 'practical_programs_description'.tr(),
-      'pdfUrl': 'assets/certificates/practical computer programs.pdf',
+      'pdfUrl': 'assets/assets/certificates/practical computer programs.pdf',
       'category': 'programming'.tr(),
       'skills': [
         'ms_office'.tr(),
@@ -64,7 +65,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'ui_ux_design_description'.tr(),
-      'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
+      'pdfUrl': 'assets/assets/certificates/UI_UX Design.pdf',
       'category': 'design'.tr(),
       'skills': [
         'ux_design'.tr(),
@@ -77,7 +78,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'user_experience_description'.tr(),
-      'pdfUrl': 'assets/certificates/User Experience Design.pdf',
+      'pdfUrl': 'assets/assets/certificates/User Experience Design.pdf',
       'category': 'design'.tr(),
       'skills': [
         'user_research'.tr(),
@@ -90,7 +91,8 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'ui_principles_description'.tr(),
-      'pdfUrl': 'assets/certificates/User interface design principles.pdf',
+      'pdfUrl':
+          'assets/assets/certificates/User interface design principles.pdf',
       'category': 'design'.tr(),
       'skills': [
         'ui_design'.tr(),
@@ -103,7 +105,7 @@ class _CertificatesSectionState extends State<CertificatesSection>
       'issuer': 'edraak'.tr(),
       'date': '2025',
       'description': 'ux_research_description'.tr(),
-      'pdfUrl': 'assets/certificates/UI_UX Design.pdf',
+      'pdfUrl': 'assets/assets/certificates/UI_UX Design.pdf',
       'category': 'design'.tr(),
       'skills': [
         'user_research'.tr(),
